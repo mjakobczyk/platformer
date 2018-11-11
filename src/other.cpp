@@ -1,4 +1,4 @@
-#include "basic.h"
+#include "../include/basic.h"
 
 // Funkcja sprawdzaj¹ca dzia³anie biblioteki SFML
 void test()

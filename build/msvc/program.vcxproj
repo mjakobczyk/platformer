@@ -314,6 +314,41 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D:\Repos\Platformer\src\main.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\animation.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\button.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\character.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\enemy.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\engine.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\entity.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\game.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\gameOver.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\hero.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\interface.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\level.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\menu.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\moveable.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\other.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\spell.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\stable.cpp" />
+    <ClCompile Include="D:\Repos\Platformer\src\tile.cpp" />
+    <ClInclude Include="D:\Repos\Platformer\include\animation.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\button.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\basic.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\character.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\enemy.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\engine.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\entity.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\game.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\gameOver.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\hero.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\interface.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\level.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\menu.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\moveable.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\spell.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\stable.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\tile.h" />
+    <ClInclude Include="D:\Repos\Platformer\include\wektor.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\Repos\Platformer\build\msvc\ZERO_CHECK.vcxproj">

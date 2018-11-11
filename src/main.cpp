@@ -1,15 +1,11 @@
-// #include "basic.h"
-#include <iostream>
-#include "SFML/Graphics.hpp"
+#include "../include/basic.h"
 
 int main()
 {
-	//Game game1;
-	//game1.run();
+	Game game;
+	game.run();
 	
 	std::cout << "Hello world!" << std::endl;
-
-	sf::Clock ck;
 
 	return 0;
 }

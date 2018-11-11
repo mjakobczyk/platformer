@@ -14,6 +14,44 @@ set (SFML_ROOT "D:/SFML")
 #set source files
 set (SOURCE_FILES 
 	src/main.cpp
+	src/animation.cpp
+	src/button.cpp
+	src/character.cpp
+	src/enemy.cpp
+	src/engine.cpp
+	src/entity.cpp
+	src/game.cpp
+	src/gameOver.cpp
+	src/hero.cpp
+	src/interface.cpp
+	src/level.cpp
+	src/menu.cpp
+	src/moveable.cpp
+	src/other.cpp
+	src/spell.cpp
+	src/stable.cpp
+	src/tile.cpp
+)
+
+set (HEADER_FILES
+	include/animation.h
+	include/button.h
+	include/basic.h
+	include/character.h
+	include/enemy.h
+	include/engine.h
+	include/entity.h
+	include/game.h
+	include/gameOver.h
+	include/hero.h
+	include/interface.h
+	include/level.h
+	include/menu.h
+	include/moveable.h
+	include/spell.h
+	include/stable.h
+	include/tile.h
+	include/wektor.h
 )
 
 #look for SFML and add it
@@ -30,5 +68,5 @@ else()
 endif()
 
 #we add the executable of the program
-add_executable (program ${SOURCE_FILES})
+add_executable (program ${SOURCE_FILES} ${HEADER_FILES})
 target_link_libraries(program ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
