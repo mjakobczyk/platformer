@@ -1,0 +1,3 @@
+D:/Repos/Platformer/build/msvc/CMakeFiles/program.dir
+D:/Repos/Platformer/build/msvc/CMakeFiles/ALL_BUILD.dir
+D:/Repos/Platformer/build/msvc/CMakeFiles/ZERO_CHECK.dir
