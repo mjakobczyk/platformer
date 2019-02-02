@@ -1,32 +1,32 @@
 #ifndef ENGINE_H_
-#define ENGINE_H
+#define ENGINE_H_
 
 #define WAIT_TIME 5
 
-// Klasa silnika gry, zarz¹dza wyborem aktualnego poziomu
+// Klasa silnika gry, zarzï¿½dza wyborem aktualnego poziomu
 class Engine
 {
-	int totalLevels; // Ca³kowita iloœæ poziomów do przejœcia
+	int totalLevels; // Caï¿½kowita iloï¿½ï¿½ poziomï¿½w do przejï¿½cia
 	int currentLevel; // Numer aktualnie granego poziomu
-	bool running; // Flaga okreœlaj¹ca czy trwa rozgrywka
-	Stats totalStats; // Statystyki zwracane po wyjœæiu z gry
+	bool running; // Flaga okreï¿½lajï¿½ca czy trwa rozgrywka
+	Stats totalStats; // Statystyki zwracane po wyjï¿½ï¿½iu z gry
 
-	std::vector <Level*> levels; // Wektor granych poziomów
-	sf::Clock delay; // OpóŸnienie generowane w celu uzyskania przerywników miêdzy poziomami
+	std::vector <Level*> levels; // Wektor granych poziomï¿½w
+	sf::Clock delay; // Opï¿½nienie generowane w celu uzyskania przerywnikï¿½w miï¿½dzy poziomami
 	sf::RenderWindow & window; // Uchwyt do oryginalnego okna gry
-	Hero * hero; // WskaŸik na tworzon¹ postaæ gracza
+	Hero * hero; // Wskaï¿½ik na tworzonï¿½ postaï¿½ gracza
 
 public:
 	Engine(sf::RenderWindow & window, heroSpec);
 	~Engine();
 
-	void updateScore(int); // Aktualizuje wynik koñcowy
-	void updateTime(float); // Aktualizuje czas, w którym rozegrano grê
-	int getPoints(); // Pobiera iloœæ uzyskanych punktów
-	float getTime(); // Pobiera czas, w jakim rozegrano grê
+	void updateScore(int); // Aktualizuje wynik koï¿½cowy
+	void updateTime(float); // Aktualizuje czas, w ktï¿½rym rozegrano grï¿½
+	int getPoints(); // Pobiera iloï¿½ï¿½ uzyskanych punktï¿½w
+	float getTime(); // Pobiera czas, w jakim rozegrano grï¿½
 
-	void run(sf::RenderWindow &); // Powoduje aktywacjê silnika gry 
-	bool play(sf::RenderWindow &, Level*); // Pozwala rozegraæ dany poziom
+	void run(sf::RenderWindow &); // Powoduje aktywacjï¿½ silnika gry 
+	bool play(sf::RenderWindow &, Level*); // Pozwala rozegraï¿½ dany poziom
 };
 
 #endif

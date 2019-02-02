@@ -4,7 +4,7 @@
 
 Enemy::Enemy() : Character()
 {
-	// Inicjalizacja zmiennych dotycz¹cych ruchu
+	// Inicjalizacja zmiennych dotyczï¿½cych ruchu
 	gravity = 0.0f;
 	moveSpeed = 25.0f;
 	jumpSpeed = 0.0f;
@@ -14,7 +14,7 @@ Enemy::Enemy() : Character()
 	endPos = sf::Vector2f(0.0f, 0.0f);
 	backPos = sf::Vector2f(0.0f, 0.0f);
 
-	// Ustawienie flag dotycz¹cych ruchu
+	// Ustawienie flag dotyczï¿½cych ruchu
 	canJump = false;
 
 	totalTime = 0.0f;
@@ -27,7 +27,7 @@ Enemy::Enemy() : Character()
 Enemy::Enemy(sf::Texture * texture_, sf::Vector2u imageCount_, float switchTime_) :
 	Character(texture_, imageCount_, switchTime_)
 {
-	// Inicjalizacja zmiennych dotycz¹cych ruchu
+	// Inicjalizacja zmiennych dotyczï¿½cych ruchu
 	gravity = 0.0f;
 	moveSpeed = 25.0f;
 	jumpSpeed = 0.0f;
@@ -37,7 +37,7 @@ Enemy::Enemy(sf::Texture * texture_, sf::Vector2u imageCount_, float switchTime_
 	endPos = sf::Vector2f(0.0f, 0.0f);
 	backPos = sf::Vector2f(0.0f, 0.0f);
 
-	// Ustawienie flag dotycz¹cych ruchu
+	// Ustawienie flag dotyczï¿½cych ruchu
 	canJump = false;
 
 	totalTime = 0.0f;
@@ -50,7 +50,7 @@ Enemy::Enemy(sf::Texture * texture_, sf::Vector2u imageCount_, float switchTime_
 Enemy::Enemy(sf::Vector2u imageCount_, float switchTime_) :
 	Character(imageCount_, switchTime_)
 {
-	// Inicjalizacja zmiennych dotycz¹cych ruchu
+	// Inicjalizacja zmiennych dotyczï¿½cych ruchu
 	gravity = 0.0f;
 	moveSpeed = 25.0f;
 	jumpSpeed = 0.0f;
@@ -60,7 +60,7 @@ Enemy::Enemy(sf::Vector2u imageCount_, float switchTime_) :
 	endPos = sf::Vector2f(0.0f, 0.0f);
 	backPos = sf::Vector2f(0.0f, 0.0f);
 
-	// Ustawienie flag dotycz¹cych ruchu
+	// Ustawienie flag dotyczï¿½cych ruchu
 	canJump = false;
 
 	totalTime = 0.0f;
@@ -147,7 +147,7 @@ sf::Vector2f Enemy::getBackPos()
 Zombie::Zombie() :
 	Enemy()
 {
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	sf::Texture * texture = new sf::Texture;
 	if (!(*texture).loadFromFile("Grafiki/zombie.png"))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
@@ -166,7 +166,7 @@ Zombie::Zombie() :
 Zombie::Zombie(sf::Vector2u imageCount_, float switchTime_) :
 	Enemy(imageCount_, switchTime_)
 {
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	if (!(*texture).loadFromFile("Grafiki/zombie.png"))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	animation.setSize(*texture);
@@ -181,7 +181,7 @@ Zombie::Zombie(sf::Vector2u imageCount_, float switchTime_) :
 Zombie::Zombie(sf::Texture * texture_, sf::Vector2u imageCount_, float switchTime_) :
 	Enemy(texture_, imageCount_, switchTime_)
 {
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	animation.setSize(*texture);
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
@@ -202,7 +202,7 @@ void Zombie::update(float diff)
 {
 	//sprite.setScale(0.5f, 0.5f);
 
-	movement = sf::Vector2f(abs(this->moveSpeed * diff), 0);
+	movement = sf::Vector2f(std::fabs(this->moveSpeed * diff), 0);
 	animation.update(0, diff, faceRight);
 	sprite.setTextureRect(animation.getIntRect());
 	move(movement);
@@ -218,7 +218,7 @@ void Zombie::update(float diff)
 Villain::Villain() :
 	Enemy()
 {
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	sf::Texture * texture = new sf::Texture;
 	if (!(*texture).loadFromFile("Grafiki/Villain.png"))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
@@ -237,7 +237,7 @@ Villain::Villain() :
 Villain::Villain(sf::Vector2u imageCount_, float switchTime_) :
 	Enemy(imageCount_, switchTime_)
 {
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	if (!(*texture).loadFromFile("Grafiki/zombie.png"))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	animation.setSize(*texture);
@@ -252,7 +252,7 @@ Villain::Villain(sf::Vector2u imageCount_, float switchTime_) :
 Villain::Villain(sf::Texture * texture_, sf::Vector2u imageCount_, float switchTime_) :
 	Enemy(texture_, imageCount_, switchTime_)
 {
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	animation.setSize(*texture);
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
@@ -273,22 +273,22 @@ void Villain::update(float diff)
 {
 	//sprite.setScale(0.5f, 0.5f);
 
-	// Je¿eli wróg jest obrócony w prawo
+	// Jeï¿½eli wrï¿½g jest obrï¿½cony w prawo
 	if (faceRight)
 	{
 		animation.update(2, diff, faceRight);
-		movement = sf::Vector2f(abs(this->moveSpeed * diff), 0);
+		movement = sf::Vector2f(std::fabs(this->moveSpeed * diff), 0);
 
 		if (this->getPosition().x > this->getEndPos().x)
 		{
 			this->faceRight = false;
 		}
 	}
-	// Je¿eli wróg obrócony jest w lewo
+	// Jeï¿½eli wrï¿½g obrï¿½cony jest w lewo
 	else
 	{
 		animation.update(1, diff, faceRight);
-		movement = sf::Vector2f(-abs(this->moveSpeed * diff), 0);
+		movement = sf::Vector2f(-std::fabs(this->moveSpeed * diff), 0);
 
 		if (this->getPosition().x < this->getBackPos().x)
 		{

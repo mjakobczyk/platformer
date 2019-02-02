@@ -3,6 +3,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
+#include <cmath>
 #include <string>
 #include <vector>
 #include <time.h>
@@ -62,4 +63,4 @@ std::string pobierzAktualnyCzas();
 std::string convertSecondsToMinutes(float);
 std::string convertIntToString(int);
 
-#endif BASIC_H_
+#endif

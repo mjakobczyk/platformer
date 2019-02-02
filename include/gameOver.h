@@ -1,16 +1,17 @@
-#pragma once
+#ifndef GAMEOVER_H_
+#define GAMEOVER_H_
 #include "stable.h"
 
-// Klasa obiektu wyœwietlanego na zakoñczenie gry
+// Klasa obiektu wyï¿½wietlanego na zakoï¿½czenie gry
 class GameOver : public Stable
 {
-	float totalTime; // Ca³kowity czas zmiany tekstury, nie mo¿e przekraczaæ switch time'u
-	float switchTime; // Okreœla czêstoœæ zmian tekstury postaci
-	int row; // Okreœla w którym rzêdzie animacji jesteœmy
+	float totalTime; // Caï¿½kowity czas zmiany tekstury, nie moï¿½e przekraczaï¿½ switch time'u
+	float switchTime; // Okreï¿½la czï¿½stoï¿½ï¿½ zmian tekstury postaci
+	int row; // Okreï¿½la w ktï¿½rym rzï¿½dzie animacji jesteï¿½my
 
-	sf::Clock clock; // Czas dzia³ania
+	sf::Clock clock; // Czas dziaï¿½ania
 	Animation animation; // Animacja obiektu
-	bool down; // Flaga czy animacja pobiera kolejne klatki w dó³
+	bool down; // Flaga czy animacja pobiera kolejne klatki w dï¿½
 
 public:
 	GameOver();
@@ -19,3 +20,4 @@ public:
 	virtual void update(float) final; // Aktualizacja obiektu
 };
 
+#endif

@@ -5,9 +5,9 @@
 Interface::Interface(Hero * & hero_) :
 	hero (hero_)
 {
-	if (!font.loadFromFile("Czcionki/blockss.otf")) // "Czcionki/blockss.otf"
+	if (!font.loadFromFile("../resources/Czcionki/BLOCKSS.otf")) // "Czcionki/blockss.otf"
 	{
-		std::cout << "Blad odczytu czcionki!" << std::endl;
+		std::cout << "Blad odczytu czcionki przy inicjalizacji interfejsu!" << std::endl;
 		return;
 	}
 
@@ -147,12 +147,12 @@ void Interface::draw(sf::RenderWindow & window)
 
 void Interface::update(sf::Time time, float points)
 {
-	// Aktualizacja danych o ¿yciu gracza
+	// Aktualizacja danych o ï¿½yciu gracza
 	std::ostringstream ss;
 	ss << hero->getHealth();
 	buttons[2]->setName(ss.str());
 
-	// Aktualizacja danych o iloœci punktów poziomu
+	// Aktualizacja danych o iloï¿½ci punktï¿½w poziomu
 	std::ostringstream hh;
 	hh << points;
 	buttons[5]->setName(hh.str());

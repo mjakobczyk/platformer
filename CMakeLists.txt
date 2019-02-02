@@ -5,11 +5,16 @@ cmake_minimum_required(VERSION 3.12) # personally I'd set this version as low as
 project (platformer)
 
 #set the C++ standard to be used
-set (CMAKE_CXX_STANDARD 14)
+# set (CMAKE_CXX_STANDARD 14)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
-set (SFML_ROOT "D:/SFML")
+# set (SFML_ROOT "D:/SFML")
+set (SFML_ROOT "/Users/Majki/Local/SFML")
+
 
 #set source files
 set (SOURCE_FILES 
