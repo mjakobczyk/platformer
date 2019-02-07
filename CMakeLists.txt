@@ -26,13 +26,14 @@ set (SOURCE_FILES
 	src/engine.cpp
 	src/entity.cpp
 	src/game.cpp
-	src/gameOver.cpp
+	src/game-over.cpp
 	src/hero.cpp
 	src/interface.cpp
 	src/level.cpp
 	src/menu.cpp
 	src/moveable.cpp
 	src/other.cpp
+	src/resources.cpp
 	src/spell.cpp
 	src/stable.cpp
 	src/tile.cpp
@@ -47,12 +48,13 @@ set (HEADER_FILES
 	include/engine.h
 	include/entity.h
 	include/game.h
-	include/gameOver.h
+	include/game-over.h
 	include/hero.h
 	include/interface.h
 	include/level.h
 	include/menu.h
 	include/moveable.h
+	include/resources.h
 	include/spell.h
 	include/stable.h
 	include/tile.h

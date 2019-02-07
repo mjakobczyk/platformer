@@ -5,7 +5,7 @@
 Menu::Menu()
 {
 	// Za�adowanie wykorzystywanej czcionki
-	if (!font.loadFromFile("../resources/Czcionki/BLOCKSS.otf")) // "Czcionki/blockss.otf"
+	if (!font.loadFromFile(Resources::getMenuBackgroundFont())) // "Czcionki/blockss.otf"
 	{
 		std::cout << "Blad odczytu czcionki!" << std::endl;
 		return;
@@ -124,7 +124,7 @@ MainMenu::MainMenu()
 	}
 
 	buttons[0]->setColor(sf::Color::Red);
-	backgroundT.loadFromFile("Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
+	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 	menuState = MAIN_MENU;
@@ -267,7 +267,7 @@ Play::Play()
 	buttonId = 1; // Ustawienie domy�lnego przycisku na pierwszy poza tytu�owym
 	buttons[1]->setColor(sf::Color::Red); // Pod�wietlony na czerwono b�dzie przycisk pod tytu�em
 	heroSpecSet = false;
-	backgroundT.loadFromFile("../resources/Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
+	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 	this->setMenuState(PLAY);
@@ -532,7 +532,7 @@ NextLevel::NextLevel(int number)
 		buttons.push_back(tmp);
 	}
 
-	backgroundT.loadFromFile("Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
+	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 
@@ -653,7 +653,7 @@ EndGame::EndGame(int pts, float tm)
 	gameover->setPosition(sf::Vector2f((WIDTH - gameover->getSprite().getGlobalBounds().width )/ 2, 100));
 	stableObjects.push_back(gameover);
 	buttons[0]->setColor(sf::Color::Red);
-	backgroundT.loadFromFile("Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
+	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 	menuState = MenuState::GAME_OVER;
