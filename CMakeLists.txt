@@ -12,8 +12,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
-# set (SFML_ROOT "D:/SFML")
-set (SFML_ROOT "/Users/Majki/Local/SFML")
+set (SFML_ROOT "D:/SFML")
+# set (SFML_ROOT "/Users/Majki/Local/SFML")
 
 
 #set source files

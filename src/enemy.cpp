@@ -149,7 +149,7 @@ Zombie::Zombie() :
 {
 	// Ustawienie rz�du aniamcji, tekstury i sprite'a
 	sf::Texture * texture = new sf::Texture;
-	if (!(*texture).loadFromFile("Grafiki/zombie.png"))
+	if (!(*texture).loadFromFile("resources/Grafiki/zombie.png"))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 
 	animation.setImageCount(sf::Vector2u(9, 1));
@@ -167,7 +167,7 @@ Zombie::Zombie(sf::Vector2u imageCount_, float switchTime_) :
 	Enemy(imageCount_, switchTime_)
 {
 	// Ustawienie rz�du aniamcji, tekstury i sprite'a
-	if (!(*texture).loadFromFile("Grafiki/zombie.png"))
+	if (!(*texture).loadFromFile("resources/Grafiki/zombie.png"))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	animation.setSize(*texture);
 	sprite.setTexture(*texture);
@@ -220,7 +220,7 @@ Villain::Villain() :
 {
 	// Ustawienie rz�du aniamcji, tekstury i sprite'a
 	sf::Texture * texture = new sf::Texture;
-	if (!(*texture).loadFromFile("Grafiki/Villain.png"))
+	if (!(*texture).loadFromFile("resources/Grafiki/Villain.png"))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 
 	animation.setImageCount(sf::Vector2u(4, 4));
@@ -238,7 +238,7 @@ Villain::Villain(sf::Vector2u imageCount_, float switchTime_) :
 	Enemy(imageCount_, switchTime_)
 {
 	// Ustawienie rz�du aniamcji, tekstury i sprite'a
-	if (!(*texture).loadFromFile("Grafiki/zombie.png"))
+	if (!(*texture).loadFromFile("resources/Grafiki/zombie.png"))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	animation.setSize(*texture);
 	sprite.setTexture(*texture);
