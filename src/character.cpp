@@ -30,7 +30,7 @@ Character::Character() :
 
 	// Ustawienie rz�du aniamcji, tekstury i sprite'a
 	row = 1;
-	if (!(*texture).loadFromFile("Grafiki/warlock_of.png"))
+	if (!(*texture).loadFromFile(Resources::getWarlockTexture()))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
@@ -103,7 +103,7 @@ Character::Character(sf::Vector2u imageCount_, float switchTime_) :
 
 	// Ustawienie rz�du aniamcji, tekstury i sprite'a
 	row = 1;
-	if (!(*texture).loadFromFile("Grafiki/warlock_of.png"))
+	if (!(*texture).loadFromFile(Resources::getWarlockTexture()))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
@@ -140,7 +140,7 @@ Character::Character(sf::Texture * texture_, sf::Vector2u imageCount_, float swi
 
 	// Ustawienie rz�du aniamcji, tekstury i sprite'a
 	row = 1;
-	if (!(*texture).loadFromFile("Grafiki/warlock_of.png"))
+	if (!(*texture).loadFromFile(Resources::getWarlockTexture()))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
