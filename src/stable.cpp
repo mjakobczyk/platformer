@@ -68,7 +68,7 @@ Coin::Coin() : Stable()
 	interactable = false;
 	interaction = BONUS;
 	sf::Texture * temp = new sf::Texture;
-	if (!temp->loadFromFile("Grafiki/coin.png"))
+	if (!temp->loadFromFile(Resources::getCoinTexture()))
 		std::cout << "Failed to load Coin texture!" << std::endl;
 	setTexture(temp);
 	coords = sf::Vector2i(0, 0);

@@ -124,11 +124,7 @@ MainMenu::MainMenu()
 	}
 
 	buttons[0]->setColor(sf::Color::Red);
-<<<<<<< HEAD
-	backgroundT.loadFromFile("../resources/Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
-=======
 	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
->>>>>>> bafa32b71ed77739f471155db45fb25c82692214
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 	menuState = MAIN_MENU;
@@ -536,11 +532,7 @@ NextLevel::NextLevel(int number)
 		buttons.push_back(tmp);
 	}
 
-<<<<<<< HEAD
-	backgroundT.loadFromFile("../resources/Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
-=======
 	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
->>>>>>> bafa32b71ed77739f471155db45fb25c82692214
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 
@@ -661,11 +653,7 @@ EndGame::EndGame(int pts, float tm)
 	gameover->setPosition(sf::Vector2f((WIDTH - gameover->getSprite().getGlobalBounds().width )/ 2, 100));
 	stableObjects.push_back(gameover);
 	buttons[0]->setColor(sf::Color::Red);
-<<<<<<< HEAD
-	backgroundT.loadFromFile("../resources/Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
-=======
 	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
->>>>>>> bafa32b71ed77739f471155db45fb25c82692214
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 	menuState = MenuState::GAME_OVER;

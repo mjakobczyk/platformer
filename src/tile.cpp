@@ -55,7 +55,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::BRICK_1:
 	{
 		ID = 3;
-		txr->loadFromFile("Grafiki/brick_1.png");
+		txr->loadFromFile(Resources::getBrick1Texture());
 		tile.sprite.setTexture(*txr);
 		interaction = STOP;
 		collidable = false;
@@ -65,7 +65,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::BRICK_2:
 	{
 		ID = 4;
-		txr->loadFromFile("Grafiki/brick_2.png");
+		txr->loadFromFile(Resources::getBrick2Texture());
 		tile.sprite.setTexture(*txr);
 		interaction = NONE;
 		collidable = false;
@@ -192,7 +192,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::BRICK_1:
 	{
 		tile->ID = 3;
-		txr->loadFromFile("Grafiki/brick_1.png");
+		txr->loadFromFile(Resources::getBrick1Texture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = STOP;
 		tile->collidable = false;
@@ -202,7 +202,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::BRICK_2:
 	{
 		tile->ID = 4;
-		txr->loadFromFile("Grafiki/brick_2.png");
+		txr->loadFromFile(Resources::getBrick2Texture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = NONE;
 		tile->collidable = false;

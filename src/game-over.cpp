@@ -9,7 +9,7 @@ GameOver::GameOver()
 	interactable = false;
 	interaction = Interaction::NONE;
 	sf::Texture * temp = new sf::Texture;
-	if (!temp->loadFromFile("Grafiki/Gameover.png"))
+	if (!temp->loadFromFile(Resources::getGameoverTexture())) // Resources::getZombieTexture()
 		std::cout << "Failed to load Gameover texture!" << std::endl;
 
 	setTexture(temp);
@@ -37,7 +37,7 @@ void GameOver::update(float diff)
 {
 	if (clock.getElapsedTime().asSeconds() > 0.1f)
 	{
-		// Je¿eli idziemy w dó³ z animacj¹
+		// Jeï¿½eli idziemy w dï¿½ z animacjï¿½
 		if (down)
 		{
 			animation.update(row++, diff, true);
@@ -45,7 +45,7 @@ void GameOver::update(float diff)
 			if (row > 2)
 				down = false;
 		}
-		// Je¿eli idziemy w górê z animacj¹
+		// Jeï¿½eli idziemy w gï¿½rï¿½ z animacjï¿½
 		else
 		{
 			animation.update(row--, diff, true);

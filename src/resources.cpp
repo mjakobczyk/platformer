@@ -63,3 +63,80 @@ std::string Resources::getShadowboltTexture()
 }
 
 //---------------------------------------------------------------------------------------
+
+std::string Resources::getZombieTexture()
+{
+    return Resources::graphicsDirectory  + "Zombie.png";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getVillainTexture()
+{
+    return Resources::graphicsDirectory  + "Villain.png";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getGameoverTexture()
+{
+    return Resources::graphicsDirectory  + "Gameover.png";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getHeartTexture()
+{
+    return Resources::graphicsDirectory  + "heart.png";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getClockTexture()
+{
+    return Resources::graphicsDirectory  + "clock.png";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getCoinTexture()
+{
+    return Resources::graphicsDirectory  + "Gameover.png";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getCoinPileTexture()
+{
+    return Resources::graphicsDirectory  + "coin_pile.png";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getBackground4Texture()
+{
+    return Resources::graphicsDirectory  + "backg4.jpg";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getBackground5Texture()
+{
+    return Resources::graphicsDirectory  + "backg5.jpg";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getBrick1Texture()
+{
+    return Resources::graphicsDirectory  + "brick_1.png";
+}
+
+//---------------------------------------------------------------------------------------
+
+std::string Resources::getBrick2Texture()
+{
+    return Resources::graphicsDirectory  + "brick_2.png";
+}
+
+//---------------------------------------------------------------------------------------
