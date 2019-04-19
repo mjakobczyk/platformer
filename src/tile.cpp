@@ -45,7 +45,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::STONE_1:
 	{
 		ID = 1;
-		txr->loadFromFile("Grafiki/stone_1.png");
+		txr->loadFromFile(Resources::getStone1Texture());
 		tile.sprite.setTexture(*txr);
 		interaction = STOP;
 		collidable = false;
@@ -75,7 +75,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::LAVA_1:
 	{
 		ID = 5;
-		txr->loadFromFile("Grafiki/lava_1.png");
+		txr->loadFromFile(Resources::getLava11Texture());
 		tile.sprite.setTexture(*txr);
 		interaction = DAMAGE;
 		collidable = false;
@@ -85,7 +85,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::LAVA_2:
 	{
 		ID = 6;
-		txr->loadFromFile("Grafiki/lava_2.png");
+		txr->loadFromFile(Resources::getLava2Texture());
 		tile.sprite.setTexture(*txr);
 		interaction = DAMAGE;
 		collidable = false;
@@ -95,7 +95,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::WATER_1:
 	{
 		ID = 7;
-		txr->loadFromFile("Grafiki/water_1.png");
+		txr->loadFromFile(Resources::getWater1Texture());
 		sprite.setTexture(*txr);
 		interaction = NONE;
 		collidable = true;
@@ -105,7 +105,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::ENTRANCE_DOOR:
 	{
 		ID = 8;
-		txr->loadFromFile("dngn_closed_door");
+		txr->loadFromFile(Resources::getExitDoorsTexture());
 		tile.sprite.setTexture(*txr);
 		interaction = TELEPORT;
 		collidable = true;
@@ -115,7 +115,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::EXIT_DOOR:
 	{
 		ID = 9;
-		txr->loadFromFile("Grafiki/dngn_altar.png");
+		txr->loadFromFile(Resources::getExitDoorsTexture());
 		tile.sprite.setTexture(*txr);
 		interaction = TELEPORT;
 		collidable = true;
@@ -125,7 +125,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::PAD_1:
 	{
 		ID = 10;
-		txr->loadFromFile("Grafiki/pad_1.png");
+		txr->loadFromFile(Resources::getPad1Texture());
 		sprite.setTexture(*txr);
 		interaction = NONE;
 		collidable = true;
@@ -135,7 +135,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::ALTAR_1:
 	{
 		ID = 11;
-		txr->loadFromFile("Grafiki/dngn_altar.png");
+		txr->loadFromFile(Resources::getAltarTexture());
 		sprite.setTexture(*txr);
 		interaction = NONE;
 		collidable = true;
@@ -145,7 +145,7 @@ Tile Tile::getTile(short tileCode)
 	case TileType::MARBLE_1:
 	{
 		ID = 12;
-		tile.texture->loadFromFile("Grafiki/marble_1.png");
+		tile.texture->loadFromFile(Resources::getMarble1Texture());
 		tile.sprite.setTexture(*texture);
 		interaction = NONE;
 		collidable = false;
@@ -182,7 +182,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::STONE_1:
 	{
 		tile->ID = 1;
-		txr->loadFromFile("Grafiki/stone_1.png");
+		txr->loadFromFile(Resources::getStone1Texture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = STOP;
 		tile->collidable = false;
@@ -212,7 +212,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::LAVA_1:
 	{
 		tile->ID = 5;
-		txr->loadFromFile("Grafiki/lava_1.png");
+		txr->loadFromFile(Resources::getLava11Texture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = DAMAGE;
 		tile->collidable = true;
@@ -222,7 +222,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::LAVA_2:
 	{
 		tile->ID = 6;
-		txr->loadFromFile("Grafiki/lava_2.png");
+		txr->loadFromFile(Resources::getLava2Texture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = DAMAGE;
 		tile->collidable = true;
@@ -232,7 +232,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::WATER_1:
 	{
 		tile->ID = 7;
-		txr->loadFromFile("Grafiki/water_1.png");
+		txr->loadFromFile(Resources::getWater1Texture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = NONE;
 		tile->collidable = true;
@@ -242,7 +242,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::ENTRANCE_DOOR:
 	{
 		tile->ID = 8;
-		txr->loadFromFile("dngn_closed_door");
+		txr->loadFromFile(Resources::getExitDoorsTexture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = NONE;
 		tile->collidable = true;
@@ -252,7 +252,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::EXIT_DOOR:
 	{
 		tile->ID = 9;
-		txr->loadFromFile("Grafiki/dngn_altar.png");
+		txr->loadFromFile(Resources::getExitDoorsTexture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = TELEPORT;
 		tile->collidable = true;
@@ -262,7 +262,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::PAD_1:
 	{
 		tile->ID = 10;
-		txr->loadFromFile("Grafiki/pad_1.png");
+		txr->loadFromFile(Resources::getPad1Texture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = NONE;
 		tile->collidable = true;
@@ -272,7 +272,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::ALTAR_1:
 	{
 		tile->ID = 11;
-		txr->loadFromFile("Grafiki/dngn_altar.png");
+		txr->loadFromFile(Resources::getAltarTexture());
 		tile->sprite.setTexture(*txr);
 		tile->interaction = NONE;
 		tile->collidable = true;
@@ -282,7 +282,7 @@ Tile * Tile::getTilePointer(short tileCode)
 	case TileType::MARBLE_1:
 	{
 		tile->ID = 12;
-		tile->texture->loadFromFile("Grafiki/marble_1.png");
+		tile->texture->loadFromFile(Resources::getMarble1Texture());
 		tile->sprite.setTexture(*texture);
 		tile->interaction = NONE;
 		tile->collidable = true;

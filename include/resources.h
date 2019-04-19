@@ -24,6 +24,15 @@ public:
     static std::string getBackground5Texture();
     static std::string getBrick1Texture();
     static std::string getBrick2Texture();
+    static std::string getStone1Texture();
+    static std::string getLava11Texture();
+    static std::string getLava2Texture();
+    static std::string getWater1Texture();
+    static std::string getClosedDoorsTexture();
+    static std::string getAltarTexture();
+    static std::string getPad1Texture();
+    static std::string getMarble1Texture();
+    static std::string getExitDoorsTexture();
 
     static const std::string graphicsDirectory;
     static const std::string fontsDirectory;

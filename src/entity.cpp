@@ -97,7 +97,7 @@ void Entity::setCoords(sf::Vector2i newCoords)
 
 //---------------------------------------------------------------------------------------
 
-sf::Vector2i Entity::getCoords() // Zwraca pozycjê jednostki w wersji kafelkowanej
+sf::Vector2i Entity::getCoords() // Zwraca pozycjï¿½ jednostki w wersji kafelkowanej
 {
 	return sf::Vector2i(this->coords);
 }

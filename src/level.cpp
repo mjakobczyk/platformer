@@ -110,13 +110,12 @@ void Level::setLevel(sf::RenderWindow & window, const std::string & fileName)
 
 bool Level::loadFromFile(const std::string & fileName)
 {
-	std::cout << "Wczytuje poziom z pliku..." << std::endl;
 	// Zmienna do obs�ugi strumienia wej�ciowego
 	std::fstream file;
 	file.open(fileName, std::ios::in);
 	if (!file.good())
 	{
-		std::cout << "Blad z odczytem poziomu z pliku!" << std::endl;
+		std::cout << "Blad z odczytem poziomu z pliku = " << fileName << "!" << std::endl;
 		return false;
 	}
 
@@ -210,7 +209,6 @@ bool Level::loadFromFile(const std::string & fileName)
 			newCoin->setCoords(coords);
 			newCoin->setPosition(position);
 			stableObjects.push_back(newCoin);
-			std::cout << "Coin koordynaty: " << position.x << " " << position.y << std::endl;
 		}
 
 		// Je�eli zczytanym obiektem jest portal wyj�ciowy
@@ -221,7 +219,6 @@ bool Level::loadFromFile(const std::string & fileName)
 			newTile->setCoords(coords);
 			newTile->setPosition(position);
 			stableObjects.push_back(newTile);
-			std::cout << "Door koordynaty: " << position.x << " " << position.y << std::endl;
 		}
 
 		// Je�eli zczytanym obiektem jest Zombie
@@ -231,7 +228,6 @@ bool Level::loadFromFile(const std::string & fileName)
 			zombie->setStartPos(position);
 			zombie->setPosition(position);
 			enemies.push_back(zombie);
-			std::cout << "Zombie koordynaty: " << position.x << " " << position.y << std::endl;
 		}
 
 		// Je�eli zczytanym obiektem jest Villain
@@ -241,14 +237,10 @@ bool Level::loadFromFile(const std::string & fileName)
 			villain->setStartPos(position);
 			villain->setPosition(position);
 			enemies.push_back(villain);
-			std::cout << "Villain koordynaty: " << position.x << " " << position.y << std::endl;
 		}
 	}
 
-	std::cout << "Poprawnie zczytano obiekty specjalne!" << std::endl;
-
 	file.close();
-	std::cout << "Wczytywanie poziomu z pliku zakonczone sukcesem!" << std::endl;
 	return true;
 }
 
@@ -427,8 +419,6 @@ void Level::updateLevel(float delta)
 		}
 		h++;
 	}
-
-	// std::cout << "Poziom zostal zaktualizowany pomyslnie!" << std::endl;
 }
 
 //---------------------------------------------------------------------------------------
@@ -729,7 +719,7 @@ bool Level::play(sf::RenderWindow & window, Hero *& hero)
 	while (window.isOpen() && this->isActive)
 	{
 		// Sprawdzenie wszystkich kolizji
-		this->checkCollisions();
+		// this->checkCollisions();
 
 		// Aktualizacja wszystkich obiekt�w
 		this->update();
@@ -750,6 +740,7 @@ bool Level::play(sf::RenderWindow & window, Hero *& hero)
 Level_01::Level_01(sf::RenderWindow & window, Hero *& hero) :
 	Level(window, hero)
 {
+	std::cout << "============= LEVEL 1 =============" << std::endl;
 	// Inicjalizacja koordynat�w na mapie dla gracza
 	startX = 32.0f;
 	startY = 620.0f;
@@ -763,7 +754,7 @@ Level_01::Level_01(sf::RenderWindow & window, Hero *& hero) :
 	this->setLevelNumber(1);
 
 	// Ustawienie odpowiedniej poziomu z pliku
-	setLevel(this->window, "Levele/level_01.txt");
+	setLevel(this->window, "../resources/Levele/level_01.txt");
 
 	// Ustawienie informacji o poruszaj�cych si� obiektach
 	for (std::vector<Enemy*>::iterator it = enemies.begin(); it != enemies.end(); ++it)
@@ -784,6 +775,8 @@ Level_01::Level_01(sf::RenderWindow & window, Hero *& hero) :
 	// Ustawienie pozycji gracza
 	this->hero->getSprite().setScale(sf::Vector2f(1.0f, 1.0f));
 	this->hero->setPosition(sf::Vector2f(startX, startY));
+
+	std::cout << "Stable objects level 01 = " << this->stableObjects.size() << std::endl;
 }
 
 //---------------------------------------------------------------------------------------
