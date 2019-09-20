@@ -719,7 +719,7 @@ bool Level::play(sf::RenderWindow & window, Hero *& hero)
 	while (window.isOpen() && this->isActive)
 	{
 		// Sprawdzenie wszystkich kolizji
-		// this->checkCollisions();
+		this->checkCollisions();
 
 		// Aktualizacja wszystkich obiekt�w
 		this->update();

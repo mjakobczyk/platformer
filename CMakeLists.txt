@@ -1,10 +1,7 @@
-#sets up the minimum version of cmake
-cmake_minimum_required(VERSION 3.12) # personally I'd set this version as low as required; you don't have to require the cutting edge version
+cmake_minimum_required(VERSION 3.12)
 
-#how the project will be called
 project (platformer)
 
-#set the C++ standard to be used
 # set (CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
@@ -12,11 +9,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
-set (SFML_ROOT "D:/SFML")
+# set (SFML_ROOT "D:/SFML")
 # set (SFML_ROOT "/Users/Majki/Local/SFML")
 
-
-#set source files
 set (SOURCE_FILES 
 	src/main.cpp
 	src/animation.cpp
@@ -61,7 +56,7 @@ set (HEADER_FILES
 	include/wektor.h
 )
 
-#look for SFML and add it
+# Look for SFML and add it
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package (SFML COMPONENTS system window graphics network audio)
 
@@ -74,6 +69,6 @@ else()
 	message("-> Make sure the SFML libraries with the same configuration (Release/Debug, Static/Dynamic) exist.\n")
 endif()
 
-#we add the executable of the program
+# Add executable to the program
 add_executable (program ${SOURCE_FILES} ${HEADER_FILES})
 target_link_libraries(program ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})

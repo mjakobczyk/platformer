@@ -367,8 +367,10 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
-# Build
-build/
-
 # VSCode
 .vscode/
+
+# Local
+bin/
+build/
+lib/
