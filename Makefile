@@ -1,7 +1,11 @@
 application=program
+generator=
 
 build:
 	mkdir -p build; cd build; cmake ../.; make; cd ../.;
+
+build-params:
+	mkdir -p build; cd build; cmake -G $(generator) ../.; make; cd ../.;
 
 run:
 	cd build; ./$(application);
