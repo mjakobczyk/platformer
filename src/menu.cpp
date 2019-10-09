@@ -4,14 +4,14 @@
 
 Menu::Menu()
 {
-	// Za³adowanie wykorzystywanej czcionki
-	if (!font.loadFromFile("Czcionki/blockss.otf")) // "Czcionki/blockss.otf"
+	// Zaï¿½adowanie wykorzystywanej czcionki
+	if (!font.loadFromFile(Resources::getMenuBackgroundFont())) // "Czcionki/blockss.otf"
 	{
 		std::cout << "Blad odczytu czcionki!" << std::endl;
 		return;
 	}
 
-	// Inicjalizacja zmiennych odpowiedzialnych za poruszanie siê po menu
+	// Inicjalizacja zmiennych odpowiedzialnych za poruszanie siï¿½ po menu
 	buttonId = 0;
 	deltaTime = 0.1f;
 	heroSpecSet = false;
@@ -124,7 +124,7 @@ MainMenu::MainMenu()
 	}
 
 	buttons[0]->setColor(sf::Color::Red);
-	backgroundT.loadFromFile("Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
+	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 	menuState = MAIN_MENU;
@@ -264,10 +264,10 @@ Play::Play()
 		buttons.push_back(tmp);
 	}
 
-	buttonId = 1; // Ustawienie domyœlnego przycisku na pierwszy poza tytu³owym
-	buttons[1]->setColor(sf::Color::Red); // Podœwietlony na czerwono bêdzie przycisk pod tytu³em
+	buttonId = 1; // Ustawienie domyï¿½lnego przycisku na pierwszy poza tytuï¿½owym
+	buttons[1]->setColor(sf::Color::Red); // Podï¿½wietlony na czerwono bï¿½dzie przycisk pod tytuï¿½em
 	heroSpecSet = false;
-	backgroundT.loadFromFile("Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
+	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 	this->setMenuState(PLAY);
@@ -363,7 +363,7 @@ void Play::run(sf::RenderWindow & whichWindow)
 					case 3: { std::cout << "Priest specialization has been chosen!!" << std::endl;
 						whichSpecSet = heroSpec::priest; heroSpecSet = true; moveUp(); moveUp(); break; } // menuState = 
 					case 4: { std::cout << "Return button has been pressed!" << std::endl; 
-						this->setMenuState(MAIN_MENU); moveUp(); moveUp(); moveUp(); return; } // Przy ustawianiu stanu musi byæ return;
+						this->setMenuState(MAIN_MENU); moveUp(); moveUp(); moveUp(); return; } // Przy ustawianiu stanu musi byï¿½ return;
 					default: break;
 					}
 					break;
@@ -532,7 +532,7 @@ NextLevel::NextLevel(int number)
 		buttons.push_back(tmp);
 	}
 
-	backgroundT.loadFromFile("Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
+	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 
@@ -574,13 +574,13 @@ void NextLevel::draw(sf::RenderWindow & whichWindow)
 	whichWindow.clear();
 	whichWindow.draw(backgroundS);
 
-	// Wypisanie napisów
+	// Wypisanie napisï¿½w
 	for (int i = 0; i < NEXT_LEVEL_BUTTONS_QUANTITY; ++i)
 	{
 		buttons[i]->draw(whichWindow);
 	}
 
-	// Aktualizacja efektów
+	// Aktualizacja efektï¿½w
 	for (std::vector<Enemy*>::iterator it = visualisation.begin(); it != visualisation.end(); ++it)
 	{
 		if (*it == nullptr) continue;
@@ -588,7 +588,7 @@ void NextLevel::draw(sf::RenderWindow & whichWindow)
 		(*it)->update(this->deltaTime);
 	}
 
-	// Wyœwietlenie dodatkowych efektów
+	// Wyï¿½wietlenie dodatkowych efektï¿½w
 	for (std::vector<Enemy*>::iterator it = visualisation.begin(); it != visualisation.end(); ++it)
 	{
 		(*it)->draw(whichWindow);
@@ -653,7 +653,7 @@ EndGame::EndGame(int pts, float tm)
 	gameover->setPosition(sf::Vector2f((WIDTH - gameover->getSprite().getGlobalBounds().width )/ 2, 100));
 	stableObjects.push_back(gameover);
 	buttons[0]->setColor(sf::Color::Red);
-	backgroundT.loadFromFile("Grafiki/backg1.jpg"); // "Grafiki/map_01.png"
+	backgroundT.loadFromFile(Resources::getMenuBackgroundTexture()); // "Grafiki/map_01.png"
 	backgroundS.setTexture(backgroundT);
 	backgroundS.setScale(1, 1);
 	menuState = MenuState::GAME_OVER;
@@ -732,7 +732,7 @@ void EndGame::draw(sf::RenderWindow & whichWindow)
 	whichWindow.clear();
 	whichWindow.draw(backgroundS);
 
-	// Wypisanie przycisków
+	// Wypisanie przyciskï¿½w
 	for (std::vector<Button*>::iterator it = buttons.begin(); it != buttons.end(); ++it)
 	{
 		if (*it == nullptr) continue;
@@ -740,7 +740,7 @@ void EndGame::draw(sf::RenderWindow & whichWindow)
 		(*it)->draw(whichWindow);
 	}
 
-	// Aktualizacja efektów
+	// Aktualizacja efektï¿½w
 	for (std::vector<Stable*>::iterator it = stableObjects.begin(); it != stableObjects.end(); ++it)
 	{
 		if (*it == nullptr) continue;
@@ -748,7 +748,7 @@ void EndGame::draw(sf::RenderWindow & whichWindow)
 		(*it)->update(this->deltaTime);
 	}
 
-	// Wyœwietlenie dodatkowych efektów
+	// Wyï¿½wietlenie dodatkowych efektï¿½w
 	for (std::vector<Stable*>::iterator it = stableObjects.begin(); it != stableObjects.end(); ++it)
 	{
 		(*it)->draw(whichWindow);

@@ -1,11 +1,13 @@
 #include "../include/basic.h"
 
+#include <cstdlib>
+
 //---------------------------------------------------------------------------------------
 
 Character::Character() :
 	Moveable(), animation(), name("unknown"), health(10), mana(10)
 {
-	// Inicjalizacja zmiennych dotycz¹cych ruchu
+	// Inicjalizacja zmiennych dotyczï¿½cych ruchu
 	tempDelta = 0.0;
 	offset = 0.0f;
 	gravity = 5.0f;
@@ -15,7 +17,7 @@ Character::Character() :
 	movement = sf::Vector2f(0.0f, 0.0f);
 	coords = sf::Vector2i(0, 0);
 
-	// Ustawienie flag dotycz¹cych ruchu
+	// Ustawienie flag dotyczï¿½cych ruchu
 	faceRight = true;
 	isJumping = false;
 	isFalling = false;
@@ -26,9 +28,9 @@ Character::Character() :
 	isColliding = false;
 	lastDirection = UNKNOWN;
 
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	row = 1;
-	if (!(*texture).loadFromFile("Grafiki/warlock_of.png"))
+	if (!(*texture).loadFromFile(Resources::getWarlockTexture()))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
@@ -42,7 +44,7 @@ Character::Character() :
 Character::Character(sf::Texture * texture_) :
 	Moveable(), animation(texture_), name("unknown"), health(10), mana(10)
 {
-	// Inicjalizacja zmiennych dotycz¹cych ruchu
+	// Inicjalizacja zmiennych dotyczï¿½cych ruchu
 	tempDelta = 0.0;
 	offset = 0.0f;
 	gravity = 5.0f;
@@ -52,7 +54,7 @@ Character::Character(sf::Texture * texture_) :
 	movement = sf::Vector2f(0.0f, 0.0f);
 	coords = sf::Vector2i(0, 0);
 
-	// Ustawienie flag dotycz¹cych ruchu
+	// Ustawienie flag dotyczï¿½cych ruchu
 	faceRight = false;
 	isJumping = false;
 	isFalling = false;
@@ -63,7 +65,7 @@ Character::Character(sf::Texture * texture_) :
 	isColliding = false;
 	lastDirection = UNKNOWN;
 
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	row = 1;
 	texture = texture_;
 	sprite.setTexture(*texture);
@@ -78,7 +80,7 @@ Character::Character(sf::Texture * texture_) :
 Character::Character(sf::Vector2u imageCount_, float switchTime_) :
 	Moveable(), animation(imageCount_, switchTime_), name("unknown"), health(10), mana(10)
 {
-	// Inicjalizacja zmiennych dotycz¹cych ruchu
+	// Inicjalizacja zmiennych dotyczï¿½cych ruchu
 	tempDelta = 0.0;
 	offset = 0.0f;
 	gravity = 5.0f;
@@ -88,7 +90,7 @@ Character::Character(sf::Vector2u imageCount_, float switchTime_) :
 	movement = sf::Vector2f(0.0f, 0.0f);
 	coords = sf::Vector2i(0, 0);
 
-	// Ustawienie flag dotycz¹cych ruchu
+	// Ustawienie flag dotyczï¿½cych ruchu
 	faceRight = false;
 	isJumping = false;
 	isFalling = false;
@@ -99,9 +101,9 @@ Character::Character(sf::Vector2u imageCount_, float switchTime_) :
 	isColliding = false;
 	lastDirection = UNKNOWN;
 
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	row = 1;
-	if (!(*texture).loadFromFile("Grafiki/warlock_of.png"))
+	if (!(*texture).loadFromFile(Resources::getWarlockTexture()))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
@@ -115,7 +117,7 @@ Character::Character(sf::Vector2u imageCount_, float switchTime_) :
 Character::Character(sf::Texture * texture_, sf::Vector2u imageCount_, float switchTime_) :
 	Moveable(), animation(texture_, imageCount_, switchTime_), name("unknown"), health(10), mana(10)
 {
-	// Inicjalizacja zmiennych dotycz¹cych ruchu
+	// Inicjalizacja zmiennych dotyczï¿½cych ruchu
 	tempDelta = 0.0;
 	offset = 0.0f;
 	gravity = 5.0f;
@@ -125,7 +127,7 @@ Character::Character(sf::Texture * texture_, sf::Vector2u imageCount_, float swi
 	movement = sf::Vector2f(0.0f, 0.0f);
 	coords = sf::Vector2i(0, 0);
 
-	// Ustawienie flag dotycz¹cych ruchu
+	// Ustawienie flag dotyczï¿½cych ruchu
 	faceRight = false;
 	isJumping = false;
 	isFalling = false;
@@ -136,9 +138,9 @@ Character::Character(sf::Texture * texture_, sf::Vector2u imageCount_, float swi
 	isColliding = false;
 	lastDirection = UNKNOWN;
 
-	// Ustawienie rzêdu aniamcji, tekstury i sprite'a
+	// Ustawienie rzï¿½du aniamcji, tekstury i sprite'a
 	row = 1;
-	if (!(*texture).loadFromFile("Grafiki/warlock_of.png"))
+	if (!(*texture).loadFromFile(Resources::getWarlockTexture()))
 		std::cout << "Blad wczytywania tekstury!" << std::endl;
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
@@ -195,14 +197,14 @@ void Character::setY(float y_)
 
 //---------------------------------------------------------------------------------------
 
-// Metoda ustawiaj¹ca imiê postaci
+// Metoda ustawiajï¿½ca imiï¿½ postaci
 void Character::setName(const std::string & name_)
 {
 	this->name = name_;
 }
 //---------------------------------------------------------------------------------------
 
-// Metoda ustawiaj¹ca ¿ycie postaci
+// Metoda ustawiajï¿½ca ï¿½ycie postaci
 void Character::setHealth(int health_)
 {
 	this->health = health_;
@@ -210,7 +212,7 @@ void Character::setHealth(int health_)
 
 //---------------------------------------------------------------------------------------
 
-// Metoda ustawiaj¹ca iloœæ many postaci
+// Metoda ustawiajï¿½ca iloï¿½ï¿½ many postaci
 void Character::setMana(int mana_)
 {
 	this->mana = mana_;
@@ -218,7 +220,7 @@ void Character::setMana(int mana_)
 
 //---------------------------------------------------------------------------------------
 
-// True - porusza siê w prawo, false - porusza siê w lewo
+// True - porusza siï¿½ w prawo, false - porusza siï¿½ w lewo
 void Character::setDirection(bool goRight)
 {
 	if (!goRight)
@@ -236,7 +238,7 @@ void Character::setCollisionState(bool collision)
 
 //---------------------------------------------------------------------------------------
 
-// Metoda sprawdzaj¹ca czy postaæ porusza siê w prawo
+// Metoda sprawdzajï¿½ca czy postaï¿½ porusza siï¿½ w prawo
 bool Character::isFacingRight()
 {
 	if (!(this->faceRight))
@@ -292,12 +294,12 @@ void Character::hurt(float delta)
 
 //---------------------------------------------------------------------------------------
 
-// Metoda aktualizuj¹ca pozycjê gracza
+// Metoda aktualizujï¿½ca pozycjï¿½ gracza
 void Character::update(float diff)
 {
 	movement = sf::Vector2f(0.0f, 0.0f);
 
-	// Gdy postaæ chce siê przesun¹æ w lewo
+	// Gdy postaï¿½ chce siï¿½ przesunï¿½ï¿½ w lewo
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		if (canMoveLeft)
@@ -309,7 +311,7 @@ void Character::update(float diff)
 		}
 	}
 
-	// Gdy postaæ chce siê przesun¹æ w prawo
+	// Gdy postaï¿½ chce siï¿½ przesunï¿½ï¿½ w prawo
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		if (canMoveRight)
@@ -321,7 +323,7 @@ void Character::update(float diff)
 		}
 	}
 
-	// Gdy postaæ chce skoczyæ
+	// Gdy postaï¿½ chce skoczyï¿½
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{	
 		if (canJump)
@@ -336,12 +338,12 @@ void Character::update(float diff)
 		}
 	}
 
-	// Je¿eli postaæ skacze
+	// Jeï¿½eli postaï¿½ skacze
 	if (isJumping == true)
 	{
 		offset -= gravity;
 		movement.y -= offset*diff;
-		// Je¿eli postaæ osi¹gnie maksymaln¹ d³ugoœæ skoku
+		// Jeï¿½eli postaï¿½ osiï¿½gnie maksymalnï¿½ dï¿½ugoï¿½ï¿½ skoku
 		if (offset <= 0)
 		{
 			isJumping = false;
@@ -351,14 +353,14 @@ void Character::update(float diff)
 		lastDirection = UP;
 	}
 
-	// Je¿eli postaæ spada
+	// Jeï¿½eli postaï¿½ spada
 	if (isFalling == true)
 	{
 		offset += gravity;
 		movement.y += offset*diff;
 		lastDirection = DOWN;
 
-		// Dopóki postaæ nie dotyka poziomu pod³o¿a
+		// Dopï¿½ki postaï¿½ nie dotyka poziomu podï¿½oï¿½a
 		if (this->getSprite().getPosition().y > groundHeight) // + this->getSprite().getGlobalBounds().height
 		{
 			isJumping = false;
@@ -381,12 +383,12 @@ void Character::update(float diff)
 		}
 	}
 
-	// Je¿eli postaæ nie porusza siê
+	// Jeï¿½eli postaï¿½ nie porusza siï¿½
 	if (movement.x == 0.0f && movement.y == 0.0f)
 	{
 		return;
 	}
-	// Je¿eli zosta³ dokonany jakiœ ruch
+	// Jeï¿½eli zostaï¿½ dokonany jakiï¿½ ruch
 	else
 	{
 		animation.update(row, diff, faceRight);
@@ -401,7 +403,7 @@ void Character::update(float diff)
 
 //---------------------------------------------------------------------------------------
 
-// Metoda rysuj¹ca postaæ
+// Metoda rysujï¿½ca postaï¿½
 void Character::draw(sf::RenderWindow & window_)
 {
 	window_.draw(sprite);
@@ -411,20 +413,20 @@ void Character::draw(sf::RenderWindow & window_)
 
 bool Character::collision(Entity * entity)
 {
-	// Je¿eli nadesz³a kolizja z kafelkiem
+	// Jeï¿½eli nadeszï¿½a kolizja z kafelkiem
 	if (typeid(*entity) == typeid(Tile))
 	{
 		// Pobierane jest ID kafelka w celu jego jednoznacznego zidentyfikowania
 		switch (entity->getID())
 		{
 
-		// Je¿eli tym kafelkiem by³ STONE_1
+		// Jeï¿½eli tym kafelkiem byï¿½ STONE_1
 		case 1:
 		{
 			std::cout << "Collision with: Stone detected!" << std::endl;
 		}
 
-		// Je¿eli tym kafelkiem by³ BRICK_1
+		// Jeï¿½eli tym kafelkiem byï¿½ BRICK_1
 		case 3:
 		{
 			std::cout << "Collision with: Brick deteced!" << std::endl;
@@ -433,7 +435,7 @@ bool Character::collision(Entity * entity)
 			// Kolizja z prawej strony
 			if (this->getLastMovement().x > 0)
 			{
-				this->move(sf::Vector2f(-abs(this->getLastMovement().x), 0));
+				this->move(sf::Vector2f(-std::abs(this->getLastMovement().x), 0));
 
 				if (this->getSprite().getPosition().y + this->getSprite().getGlobalBounds().height < groundHeight && isJumping == false)
 				{
@@ -444,7 +446,7 @@ bool Character::collision(Entity * entity)
 			// Kolizja z lewej strony
 			else if (this->getLastMovement().x < 0)
 			{
-				this->move(sf::Vector2f(abs(this->getLastMovement().x), 0));
+				this->move(sf::Vector2f(std::abs(this->getLastMovement().x), 0));
 
 				if (this->getSprite().getPosition().y + this->getSprite().getGlobalBounds().height < groundHeight && isJumping == false)
 				{
@@ -452,34 +454,34 @@ bool Character::collision(Entity * entity)
 				}
 			}
 
-			// Kolizja z do³u
+			// Kolizja z doï¿½u
 			if (this->getLastMovement().y < 0)
 			{
 				this->isJumping = false;
 				this->isFalling = true;
-				this->move(sf::Vector2f(0, abs(this->getLastMovement().y)));
+				this->move(sf::Vector2f(0, std::abs(this->getLastMovement().y)));
 			}
 
-			// Kolizja z góry
+			// Kolizja z gï¿½ry
 			else if (this->getLastMovement().y > 0)
 			{
 				this->isJumping = false;
 				this->isFalling = false;
-				this->move(sf::Vector2f(0, -abs(this->getLastMovement().y)));
+				this->move(sf::Vector2f(0, -std::abs(this->getLastMovement().y)));
 				this->movement.y = 0;
 			}
 
 			break;
 		}
 
-		// Je¿eli tym kafalkiem by³ LAVA_1
+		// Jeï¿½eli tym kafalkiem byï¿½ LAVA_1
 		case 5:
 		{
 			// std::cout << "Collision with: Lava detected!" << std::endl;
 			this->hurt(3);
 		}
 
-		// Je¿eli tym kafelkiem by³ WATER_1
+		// Jeï¿½eli tym kafelkiem byï¿½ WATER_1
 		case 7:
 		{
 			// std::cout << "Collision with: Water detected!" << std::endl;
@@ -491,20 +493,20 @@ bool Character::collision(Entity * entity)
 
 	}
 
-	// Je¿eli nadesz³a kolizja z monet¹
+	// Jeï¿½eli nadeszï¿½a kolizja z monetï¿½
 	else if (typeid(*entity) == typeid(Coin)) // else if (typeid(entity) == typeid(Coin))
 	{
 		//std::cout << "Collision with: Coin detected!" << std::endl;
 	}
 
-	// Je¿eli nadesz³a kolizja z przeciwnikiem
+	// Jeï¿½eli nadeszï¿½a kolizja z przeciwnikiem
 	else if (typeid(*entity) == typeid(Enemy)) // else if (typeid(entity) == typeid(Coin))
 	{
 		//std::cout << "Collision with: Enemy detected!" << std::endl;
 		this->hurt(3);
 	}
 
-	//Je¿eli na liœcie nie zosta³ uwzglêdniony obiekt
+	//Jeï¿½eli na liï¿½cie nie zostaï¿½ uwzglï¿½dniony obiekt
 	else
 		//std::cout << "Unknown object!" << std::endl;
 

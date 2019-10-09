@@ -3,6 +3,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
+#include <cmath>
 #include <string>
 #include <vector>
 #include <time.h>
@@ -10,6 +11,7 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 
+#include "resources.h"
 #include "game.h"
 #include "entity.h"
 #include "animation.h"
@@ -18,6 +20,7 @@
 #include "character.h"
 #include "enemy.h"
 #include "hero.h"
+#include "game-over.h"
 #include "stable.h"
 #include "tile.h"
 #include "button.h"
@@ -25,7 +28,6 @@
 #include "menu.h"
 #include "level.h"
 #include "engine.h"
-#include "gameOver.h"
 
 #define FPS 60
 #define HEIGHT 768
@@ -53,6 +55,7 @@ class Menu;
 class MainMenu;
 class Play;
 class Options;
+class Resources;
 
 void test();
 void test2();
@@ -62,4 +65,4 @@ std::string pobierzAktualnyCzas();
 std::string convertSecondsToMinutes(float);
 std::string convertIntToString(int);
 
-#endif BASIC_H_
+#endif

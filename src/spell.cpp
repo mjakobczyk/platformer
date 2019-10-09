@@ -116,7 +116,7 @@ void Spell::update(float diff)
 
 Fireball::Fireball()
 {
-	texture->loadFromFile("Grafiki/fireball.png");
+	texture->loadFromFile(Resources::getFireballTexture());
 	sprite.setTexture(*texture);
 	sprite.setScale(0.75f, 0.75f);
 	animation.setImageCount(sf::Vector2u(5, 5));
@@ -134,7 +134,7 @@ Fireball::~Fireball()
 
 Frostbolt::Frostbolt()
 {
-	texture->loadFromFile("Grafiki/fireball.png");
+	texture->loadFromFile(Resources::getFireballTexture());
 	animation.setImageCount(sf::Vector2u(5, 5));
 	animation.setSize(*texture);
 }
@@ -150,7 +150,7 @@ Frostbolt::~Frostbolt()
 
 Shadowbolt::Shadowbolt()
 {
-	texture->loadFromFile("Grafiki/fireball.png");
+	texture->loadFromFile(Resources::getFireballTexture());
 	animation.setImageCount(sf::Vector2u(5, 5));
 	animation.setSize(*texture);
 }

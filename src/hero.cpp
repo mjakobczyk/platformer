@@ -88,7 +88,7 @@ Warlock::Warlock() : Hero(heroSpec::warlock)
 	spellPower = 50;
 
 	sf::Texture * txr = new sf::Texture;
-	if (!(*txr).loadFromFile("Grafiki/warlock_of.png"))
+	if (!(*txr).loadFromFile(Resources::getWarlockTexture()))
 	{
 		std::cout << "Blad tekstury! Warlock konstruktor" << std::endl;
 		return;
@@ -145,7 +145,7 @@ Mage::Mage() : Hero(heroSpec::mage)
 	spellPower = 50;
 
 	sf::Texture * txr = new sf::Texture;
-	if (!(*txr).loadFromFile("Grafiki/mage_of.png"))
+	if (!(*txr).loadFromFile(Resources::getMageTexture()))
 	{
 		std::cout << "Blad tekstury! Mage konstruktor" << std::endl;
 		return;
@@ -203,7 +203,7 @@ Priest::Priest() : Hero(heroSpec::priest)
 	spellPower = 50;
 
 	sf::Texture * txr = new sf::Texture;
-	if (!(*txr).loadFromFile("Grafiki/priest_of.png"))
+	if (!(*txr).loadFromFile(Resources::getPriestTexture()))
 	{
 		std::cout << "Blad tekstury! Priest konstruktor" << std::endl;
 		return;

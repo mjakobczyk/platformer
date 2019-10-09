@@ -4,7 +4,7 @@
 
 Engine::Engine(sf::RenderWindow & window_, heroSpec heroSpec_) : window(window_)
 {
-	// W zale¿noœci od wybranej klasy bohater tworzy swoj¹ postaæ
+	// W zaleï¿½noï¿½ci od wybranej klasy bohater tworzy swojï¿½ postaï¿½
 	if (heroSpec_ == heroSpec::warlock)
 		this->hero = new Warlock();
 	else if (heroSpec_ == heroSpec::mage)
@@ -14,9 +14,9 @@ Engine::Engine(sf::RenderWindow & window_, heroSpec heroSpec_) : window(window_)
 	else
 		return;
 
-	totalLevels = 2; // Ca³kowita liczba zaimplementowanych poziomów
+	totalLevels = 2; // Caï¿½kowita liczba zaimplementowanych poziomï¿½w
 	currentLevel = 1; // Zaczynamy zawsze od 1. poziomu
-	bool running = false; // Identyfikacja czy gra trwa czy te¿ nie
+	bool running = false; // Identyfikacja czy gra trwa czy teï¿½ nie
 
 	Level * level1 = new Level_01(window, hero);
 	levels.push_back(level1);
@@ -80,7 +80,7 @@ bool Engine::play(sf::RenderWindow & window,Level * levelChosen)
 
 	delete next;
 
-	// Je¿eli uda³o siê rozegraæ poziom
+	// Jeï¿½eli udaï¿½o siï¿½ rozegraï¿½ poziom
 	if (levelChosen->play(window, this->hero))
 	{
 		// Zaktualizuj wyniki
@@ -89,7 +89,7 @@ bool Engine::play(sf::RenderWindow & window,Level * levelChosen)
 		this->currentLevel++;
 		return true;
 	}
-	// Je¿eli nie uda³o siê rozegraæ poziomu
+	// Jeï¿½eli nie udaï¿½o siï¿½ rozegraï¿½ poziomu
 	else
 	{
 		// Zaktualizuj wyniki

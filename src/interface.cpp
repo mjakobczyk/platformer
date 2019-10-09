@@ -5,9 +5,9 @@
 Interface::Interface(Hero * & hero_) :
 	hero (hero_)
 {
-	if (!font.loadFromFile("Czcionki/blockss.otf")) // "Czcionki/blockss.otf"
+	if (!font.loadFromFile(Resources::getMenuBackgroundFont())) // "Czcionki/blockss.otf"
 	{
-		std::cout << "Blad odczytu czcionki!" << std::endl;
+		std::cout << "Blad odczytu czcionki przy inicjalizacji interfejsu!" << std::endl;
 		return;
 	}
 
@@ -81,7 +81,7 @@ Interface::Interface(Hero * & hero_) :
 		{
 		case 0:
 		{
-			texture->loadFromFile("Grafiki/heart.png");
+			texture->loadFromFile(Resources::getHeartTexture());
 			sprite.setTexture(*texture);
 			sprite.setScale(sf::Vector2f(0.13f, 0.13f));
 			sprite.setPosition(sf::Vector2f(170, 680));
@@ -89,7 +89,7 @@ Interface::Interface(Hero * & hero_) :
 		}
 		case 1:
 		{
-			texture->loadFromFile("Grafiki/coin_2.png");
+			texture->loadFromFile(Resources::getCoinTexture());
 			sprite.setTexture(*texture);
 			sprite.setScale(sf::Vector2f(0.22f, 0.22f));
 			sprite.setPosition(sf::Vector2f(540, 680));
@@ -97,7 +97,7 @@ Interface::Interface(Hero * & hero_) :
 		}
 		case 2:
 		{
-			texture->loadFromFile("Grafiki/clock.png");
+			texture->loadFromFile(Resources::getClockTexture());
 			sprite.setTexture(*texture);
 			sprite.setScale(sf::Vector2f(0.05f, 0.05f));
 			sprite.setPosition(sf::Vector2f(900, 680));
@@ -147,12 +147,12 @@ void Interface::draw(sf::RenderWindow & window)
 
 void Interface::update(sf::Time time, float points)
 {
-	// Aktualizacja danych o ¿yciu gracza
+	// Aktualizacja danych o ï¿½yciu gracza
 	std::ostringstream ss;
 	ss << hero->getHealth();
 	buttons[2]->setName(ss.str());
 
-	// Aktualizacja danych o iloœci punktów poziomu
+	// Aktualizacja danych o iloï¿½ci punktï¿½w poziomu
 	std::ostringstream hh;
 	hh << points;
 	buttons[5]->setName(hh.str());

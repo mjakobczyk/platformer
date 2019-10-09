@@ -18,17 +18,17 @@ Level::Level(sf::RenderWindow & window_, Hero *& hero_) :
 	isActive = true;
 	isCompleted = false;
 
-	// Inicjalizacja koordynatów na mapie dla gracza
+	// Inicjalizacja koordynatï¿½w na mapie dla gracza
 	startX = 0.0f;
 	startY = 0.0f;
 
 	// Inicjalizacja zmiennych czasowych
-	switchTime = 10.0f; // Przyk³adowy switchtime, mo¿na daæ wolniejszy
-	totalTime = 0.0f; // Ca³kowity czas inicjalizujemy 0
-	delta = 0.02f; // Odstêp miêdzy kolejnymi przejœciami
+	switchTime = 10.0f; // Przykï¿½adowy switchtime, moï¿½na daï¿½ wolniejszy
+	totalTime = 0.0f; // Caï¿½kowity czas inicjalizujemy 0
+	delta = 0.02f; // Odstï¿½p miï¿½dzy kolejnymi przejï¿½ciami
 
-	// Inicjalizacja t³a
-	backgroundT.loadFromFile("Grafiki/backg4.jpg");
+	// Inicjalizacja tï¿½a
+	backgroundT.loadFromFile(Resources::getBackground4Texture());
 	backgroundS.setTexture(backgroundT);
 
 	// Inicjalizacja nazwy poziomu i jego numeru
@@ -38,9 +38,9 @@ Level::Level(sf::RenderWindow & window_, Hero *& hero_) :
 	// Inicjalizacja licznika
 	clock.restart().asSeconds();
 
-	// Za³adowanie tekstur do wektora
+	// Zaï¿½adowanie tekstur do wektora
 	sf::Texture * temp = new sf::Texture;
-	if (!(temp->loadFromFile("Grafiki/brick_1.png")))
+	if (!(temp->loadFromFile(Resources::getBackground5Texture())))
 		std::cout << "Blad z odczytem pliku do tekstury!" << std::endl;
 	else
 		std::cout << "Wczytano poprawnie teksture!!" << std::endl;
@@ -51,7 +51,7 @@ Level::Level(sf::RenderWindow & window_, Hero *& hero_) :
 
 Level::~Level()
 {
-	// Usuniêcie wszystkich tekstur
+	// Usuniï¿½cie wszystkich tekstur
 	for (std::vector<sf::Texture*>::iterator it = textures.begin(); it != textures.end(); ++it)
 	{
 		if (*it != nullptr) delete *it;
@@ -59,7 +59,7 @@ Level::~Level()
 	
 	textures.clear();
 
-	// Usuniêcie wszystkich obiektów sta³ych
+	// Usuniï¿½cie wszystkich obiektï¿½w staï¿½ych
 	for (std::vector<Stable*>::iterator it = stableObjects.begin(); it != stableObjects.end(); ++it)
 	{
 		if (*it != nullptr) delete *it;
@@ -67,7 +67,7 @@ Level::~Level()
 
 	stableObjects.clear();
 
-	// Usuniêcie wszystkich obiektów poruszaj¹cych siê
+	// Usuniï¿½cie wszystkich obiektï¿½w poruszajï¿½cych siï¿½
 	for (std::vector<Moveable*>::iterator it = moveableObjects.begin(); it != moveableObjects.end(); ++it)
 	{
 		if (*it != nullptr) delete *it;
@@ -75,7 +75,7 @@ Level::~Level()
 
 	moveableObjects.clear();
 
-	// Usuniêcie wszystkich obiektów poruszaj¹cych siê
+	// Usuniï¿½cie wszystkich obiektï¿½w poruszajï¿½cych siï¿½
 	for (std::vector<Enemy*>::iterator it = enemies.begin(); it != enemies.end(); ++it)
 	{
 		if (*it != nullptr) delete *it;
@@ -83,7 +83,7 @@ Level::~Level()
 
 	enemies.clear();
 
-	// Usuniêcie wszystkich czarów
+	// Usuniï¿½cie wszystkich czarï¿½w
 	for (std::vector<Spell*>::iterator it = spells.begin(); it != spells.end(); ++it)
 	{
 		if (*it != nullptr) delete *it;
@@ -110,17 +110,16 @@ void Level::setLevel(sf::RenderWindow & window, const std::string & fileName)
 
 bool Level::loadFromFile(const std::string & fileName)
 {
-	std::cout << "Wczytuje poziom z pliku..." << std::endl;
-	// Zmienna do obs³ugi strumienia wejœciowego
+	// Zmienna do obsï¿½ugi strumienia wejï¿½ciowego
 	std::fstream file;
 	file.open(fileName, std::ios::in);
 	if (!file.good())
 	{
-		std::cout << "Blad z odczytem poziomu z pliku!" << std::endl;
+		std::cout << "Blad z odczytem poziomu z pliku = " << fileName << "!" << std::endl;
 		return false;
 	}
 
-	// Zczytane g³ównych wspó³rzêdnych mapy i obs³uga b³êdu
+	// Zczytane gï¿½ï¿½wnych wspï¿½rzï¿½dnych mapy i obsï¿½uga bï¿½ï¿½du
 	file >> width >> height; 
 
 	if (width <= 0 || height <= 0)
@@ -132,7 +131,7 @@ bool Level::loadFromFile(const std::string & fileName)
 
 	std::cout << "Zczytane wartosci: width = " << width << " ; height = " << height << std::endl;
 
-	// Inicjalizacja rozmiaru widzialnej czêœci mapy
+	// Inicjalizacja rozmiaru widzialnej czï¿½ci mapy
 	std::cout << "Inicjalizuje klase poziom!" << std::endl;
 	//visibleWidth = (window.getSize().x / TILE_WIDTH) + 2;
 	//visibleHeight = (window.getSize().y / TILE_HEIGHT) + 2;
@@ -141,7 +140,7 @@ bool Level::loadFromFile(const std::string & fileName)
 	std::cout << "VisibleWidth = " << visibleWidth << std::endl;
 	std::cout << "VisibleHeight = " << visibleHeight << std::endl;
 
-	// Zmiana wielkoœci wektora widzialnych tekstur
+	// Zmiana wielkoï¿½ci wektora widzialnych tekstur
 	sprites.resize(visibleHeight);
 
 	for (int i = 0; i < visibleHeight; ++i)
@@ -151,7 +150,7 @@ bool Level::loadFromFile(const std::string & fileName)
 
 	std::cout << "Rozmiary zaalokowanego wektora sprite'ow to: [  y = " << sprites.size() << " x = " << sprites[0].size() << " ]" << std::endl;
 
-	// Zmiana wielkoœci wektora kafelków
+	// Zmiana wielkoï¿½ci wektora kafelkï¿½w
 	tiles.resize(height);
 
 	for (int i = 0; i < height; i++)
@@ -161,7 +160,7 @@ bool Level::loadFromFile(const std::string & fileName)
 
 	std::cout << "Rozmiary zaalokowanego wektora tiles'ow to: [  y = " << tiles.size() << " x = " << tiles[0].size() << " ]" << std::endl;
 
-	// Je¿eli wszystko jest poprawne to zczytujemy koordynaty
+	// Jeï¿½eli wszystko jest poprawne to zczytujemy koordynaty
 	std::cout << "Zczytuje koordynaty kafelkow." << std::endl;
 
 	for (int i = 0; i < height; ++i)
@@ -186,7 +185,7 @@ bool Level::loadFromFile(const std::string & fileName)
 
 	std::cout << "Poprawnie zczytano koordynaty kafelkow!" << std::endl;
 
-	// Zczytywanie obiektów specjalnych
+	// Zczytywanie obiektï¿½w specjalnych
 	std::cout << "Zczytuje obiekty specjalne." << std::endl;
 
 	while (!file.eof())
@@ -199,21 +198,20 @@ bool Level::loadFromFile(const std::string & fileName)
 		std::getline(file, line, '\n');
 		std::istringstream iss(line); // Zmienna do parsowania stringa
 
-		if (!iss.good()) std::cout << "Blad z lancuchem tekstowym!";  // Obs³uga b³êdów
+		if (!iss.good()) std::cout << "Blad z lancuchem tekstowym!";  // Obsï¿½uga bï¿½ï¿½dï¿½w
 		iss >> objName >> coords.x >> coords.y;
 		position = sf::Vector2f(static_cast<float>(coords.x * TILE_WIDTH), static_cast<float>(coords.y * TILE_HEIGHT));
 
-		// Je¿eli zczytanym obiektem jest Coin
+		// Jeï¿½eli zczytanym obiektem jest Coin
 		if (objName == "Coin")
 		{
 			Coin * newCoin = new Coin;
 			newCoin->setCoords(coords);
 			newCoin->setPosition(position);
 			stableObjects.push_back(newCoin);
-			std::cout << "Coin koordynaty: " << position.x << " " << position.y << std::endl;
 		}
 
-		// Je¿eli zczytanym obiektem jest portal wyjœciowy
+		// Jeï¿½eli zczytanym obiektem jest portal wyjï¿½ciowy
 		else if (objName == "Out")
 		{
 			Tile * newTile = new Tile;
@@ -221,34 +219,28 @@ bool Level::loadFromFile(const std::string & fileName)
 			newTile->setCoords(coords);
 			newTile->setPosition(position);
 			stableObjects.push_back(newTile);
-			std::cout << "Door koordynaty: " << position.x << " " << position.y << std::endl;
 		}
 
-		// Je¿eli zczytanym obiektem jest Zombie
+		// Jeï¿½eli zczytanym obiektem jest Zombie
 		else if (objName == "Zombie")
 		{
 			Zombie * zombie = new Zombie;
 			zombie->setStartPos(position);
 			zombie->setPosition(position);
 			enemies.push_back(zombie);
-			std::cout << "Zombie koordynaty: " << position.x << " " << position.y << std::endl;
 		}
 
-		// Je¿eli zczytanym obiektem jest Villain
+		// Jeï¿½eli zczytanym obiektem jest Villain
 		else if (objName == "Villain")
 		{
 			Villain * villain = new Villain;
 			villain->setStartPos(position);
 			villain->setPosition(position);
 			enemies.push_back(villain);
-			std::cout << "Villain koordynaty: " << position.x << " " << position.y << std::endl;
 		}
 	}
 
-	std::cout << "Poprawnie zczytano obiekty specjalne!" << std::endl;
-
 	file.close();
-	std::cout << "Wczytywanie poziomu z pliku zakonczone sukcesem!" << std::endl;
 	return true;
 }
 
@@ -328,11 +320,11 @@ void Level::awardPoint(int score)
 
 void Level::updateLevel(float delta)
 {
-	// Tymczasowy wektor wskazuj¹cy gdzie powinna znajdowaæ siê kamera
+	// Tymczasowy wektor wskazujï¿½cy gdzie powinna znajdowaï¿½ siï¿½ kamera
 	sf::Vector2i fixed(hero->getCoords());
 	camera.setCenter(fixed.x*TILE_WIDTH + TILE_WIDTH / 2, HEIGHT / 2);
 
-	// Wspó³rzêdne kamery:
+	// Wspï¿½rzï¿½dne kamery:
 	// std::cout << "X = " << camera.getCenter().x << " ; Y = " << camera.getCenter().y;
 
 	// Obliczenie pozycji minimalnych granic kamery
@@ -342,10 +334,10 @@ void Level::updateLevel(float delta)
 	int leftBorder = min.x / TILE_WIDTH;
 	int rightBorder = leftBorder + this->visibleWidth - 2;
 
-	// Je¿eli jest za daleko na lewo
+	// Jeï¿½eli jest za daleko na lewo
 	if (min.x < 0)
 	{
-		// Ró¿nica pomiêdzy 0, a lew¹ krawêdzi¹
+		// Rï¿½nica pomiï¿½dzy 0, a lewï¿½ krawï¿½dziï¿½
 		int difference = abs(min.x);
 		min.x += difference;
 		camera.move(difference, 0);
@@ -378,7 +370,7 @@ void Level::updateLevel(float delta)
 	int upBorder = min.y / TILE_HEIGHT;
 	int bottomBorder = upBorder + this->visibleHeight + 1;
 
-	// Je¿eli kamera jest za bardzo wysuniêta do góry
+	// Jeï¿½eli kamera jest za bardzo wysuniï¿½ta do gï¿½ry
 	if (min.y < 0)
 	{
 		int difference = abs(min.y);
@@ -427,8 +419,6 @@ void Level::updateLevel(float delta)
 		}
 		h++;
 	}
-
-	// std::cout << "Poziom zostal zaktualizowany pomyslnie!" << std::endl;
 }
 
 //---------------------------------------------------------------------------------------
@@ -458,7 +448,7 @@ sf::Vector2i Level::checkCollisions(Entity * entity, Direction direction)
 		break;
 	}
 	
-	// Zwracamy tile, który znajduje siê na tej pozycji
+	// Zwracamy tile, ktï¿½ry znajduje siï¿½ na tej pozycji
 	return sf::Vector2i(x, y);
 }
 
@@ -466,7 +456,7 @@ sf::Vector2i Level::checkCollisions(Entity * entity, Direction direction)
 
 void Level::checkCollisions()
 {
-	// Badanie kolizji z obiektami sta³ymi
+	// Badanie kolizji z obiektami staï¿½ymi
 	for (std::vector<Stable*>::iterator it = stableObjects.begin(); it != stableObjects.end(); ++it)
 	{
 		if (*it == nullptr) continue;
@@ -510,7 +500,7 @@ void Level::checkCollisions()
 			hero->hurt(1);
 		}
 
-		// Badanie kolizji czarów z przeciwnikami
+		// Badanie kolizji czarï¿½w z przeciwnikami
 		for (std::vector<Spell*>::iterator itt = spells.begin(); itt != spells.end(); ++itt)
 		{
 			if (*itt == nullptr) continue;
@@ -563,10 +553,10 @@ void Level::update()
 		}
 	}
 
-	// Z góry zak³adamy, ¿e gracz z niczym nie koliduje, jeœli jest inaczej to kolejna pêtla zmieni ten stan
+	// Z gï¿½ry zakï¿½adamy, ï¿½e gracz z niczym nie koliduje, jeï¿½li jest inaczej to kolejna pï¿½tla zmieni ten stan
 	hero->setCollisionState(false);
 
-	// Aktualizacja obiektów sta³ych
+	// Aktualizacja obiektï¿½w staï¿½ych
 	for (std::vector<Stable*>::iterator it = stableObjects.begin(); it != stableObjects.end();)
 	{
 		if ((*it)->isDead())
@@ -585,7 +575,7 @@ void Level::update()
 		++it;
 	}
 
-	// Aktualizacja obiektów ruchomych
+	// Aktualizacja obiektï¿½w ruchomych
 	for (std::vector<Moveable*>::iterator it = moveableObjects.begin(); it != moveableObjects.end();)
 	{
 		if ((*it)->isDead())
@@ -604,7 +594,7 @@ void Level::update()
 		++it;
 	}
 
-	// Aktualizacja przeciwników
+	// Aktualizacja przeciwnikï¿½w
 	for (std::vector<Enemy*>::iterator it = enemies.begin(); it != enemies.end();)
 	{
 		if ((*it)->isDead())
@@ -623,7 +613,7 @@ void Level::update()
 		++it;
 	}
 
-	// Aktualizacja czarów
+	// Aktualizacja czarï¿½w
 	for (std::vector<Spell*>::iterator it = spells.begin(); it != spells.end(); )
 	{
 		if ((*it)->isDead())
@@ -645,7 +635,7 @@ void Level::update()
 	// Aktualizacja gracza
 	hero->update(delta);
 
-	// Sprawdzenie warunku zakoñczenia poziomu
+	// Sprawdzenie warunku zakoï¿½czenia poziomu
 	if (hero->getHealth() < MIN_HEALTH)
 	{
 		this->isActive = false;
@@ -663,10 +653,10 @@ void Level::draw()
 	// Czyszczenie okna, aktualizacja kafli i gracza
 	window.clear(sf::Color(150, 170, 190));
 
-	// Rysowanie t³a
+	// Rysowanie tï¿½a
 	window.draw(backgroundS);
 
-	// Rysowanie obiektów sta³ych
+	// Rysowanie obiektï¿½w staï¿½ych
 	for (std::vector<Stable*>::iterator it = stableObjects.begin(); it != stableObjects.end(); ++it)
 	{
 		if (*it == nullptr) continue;
@@ -674,7 +664,7 @@ void Level::draw()
 		(*it)->draw(window);
 	}
 
-	// Rysowanie obiektów ruchomych
+	// Rysowanie obiektï¿½w ruchomych
 	for (std::vector<Moveable*>::iterator it = moveableObjects.begin(); it != moveableObjects.end(); ++it)
 	{
 		if (*it == nullptr) continue;
@@ -682,7 +672,7 @@ void Level::draw()
 		(*it)->draw(window);
 	}
 
-	// Rysowanie przeciwników
+	// Rysowanie przeciwnikï¿½w
 	for (std::vector<Enemy*>::iterator it = enemies.begin(); it != enemies.end(); ++it)
 	{
 		if (*it == nullptr) continue;
@@ -690,7 +680,7 @@ void Level::draw()
 		(*it)->draw(window);
 	}
 
-	// Rysowanie przeszkód
+	// Rysowanie przeszkï¿½d
 	for (std::vector<Tile*>::iterator it = obstacles.begin(); it != obstacles.end(); ++it)
 	{
 		if (*it == nullptr) continue;
@@ -698,7 +688,7 @@ void Level::draw()
 		window.draw((*it)->getSprite());
 	}
 
-	// Rysowanie czarów
+	// Rysowanie czarï¿½w
 	for (std::vector<Spell*>::iterator it = spells.begin(); it != spells.end(); ++it)
 	{
 		if (*it == nullptr) continue;
@@ -710,7 +700,7 @@ void Level::draw()
 	interface.draw(window);
 	hero->draw(window);
 
-	// Ustawienie kamery na œrodku ekranu
+	// Ustawienie kamery na ï¿½rodku ekranu
 	window.setView(camera);
 	window.display();
 }
@@ -722,26 +712,26 @@ bool Level::play(sf::RenderWindow & window, Hero *& hero)
 	// Ustawienie pozycji gracza
 	this->hero->setPosition(sf::Vector2f(startX, startY));
 
-	// Ustawienie efektów czasowych
+	// Ustawienie efektï¿½w czasowych
 	this->clock.restart().asSeconds();
 
-	// Dopóki okno gry jest owarte
+	// Dopï¿½ki okno gry jest owarte
 	while (window.isOpen() && this->isActive)
 	{
 		// Sprawdzenie wszystkich kolizji
 		this->checkCollisions();
 
-		// Aktualizacja wszystkich obiektów
+		// Aktualizacja wszystkich obiektï¿½w
 		this->update();
 
-		// Rysowanie wszystkich obiektów
+		// Rysowanie wszystkich obiektï¿½w
 		this->draw();
 	}
 
-	// Przed wyjœciem aktualizujemy informacje o statystykach
+	// Przed wyjï¿½ciem aktualizujemy informacje o statystykach
 	this->time += clock.getElapsedTime().asSeconds();
 
-	// Zwracamy czy poziom uda³o siê przejœæ, czy zakoñczono grê
+	// Zwracamy czy poziom udaï¿½o siï¿½ przejï¿½ï¿½, czy zakoï¿½czono grï¿½
 	return this->isCompleted;
 }
 
@@ -750,12 +740,13 @@ bool Level::play(sf::RenderWindow & window, Hero *& hero)
 Level_01::Level_01(sf::RenderWindow & window, Hero *& hero) :
 	Level(window, hero)
 {
-	// Inicjalizacja koordynatów na mapie dla gracza
+	std::cout << "============= LEVEL 1 =============" << std::endl;
+	// Inicjalizacja koordynatï¿½w na mapie dla gracza
 	startX = 32.0f;
 	startY = 620.0f;
 
-	// Inicjalizacja t³a
-	backgroundT.loadFromFile("Grafiki/backg5.png");
+	// Inicjalizacja tï¿½a
+	backgroundT.loadFromFile(Resources::getBackground5Texture());
 	backgroundS.setTexture(backgroundT);
 
 	// Inicjalizacja nazwy poziomu i jego numeru
@@ -763,9 +754,9 @@ Level_01::Level_01(sf::RenderWindow & window, Hero *& hero) :
 	this->setLevelNumber(1);
 
 	// Ustawienie odpowiedniej poziomu z pliku
-	setLevel(this->window, "Levele/level_01.txt");
+	setLevel(this->window, "../resources/Levele/level_01.txt");
 
-	// Ustawienie informacji o poruszaj¹cych siê obiektach
+	// Ustawienie informacji o poruszajï¿½cych siï¿½ obiektach
 	for (std::vector<Enemy*>::iterator it = enemies.begin(); it != enemies.end(); ++it)
 	{
 		if (typeid(**it) == typeid(Zombie))
@@ -784,6 +775,8 @@ Level_01::Level_01(sf::RenderWindow & window, Hero *& hero) :
 	// Ustawienie pozycji gracza
 	this->hero->getSprite().setScale(sf::Vector2f(1.0f, 1.0f));
 	this->hero->setPosition(sf::Vector2f(startX, startY));
+
+	std::cout << "Stable objects level 01 = " << this->stableObjects.size() << std::endl;
 }
 
 //---------------------------------------------------------------------------------------
@@ -798,12 +791,12 @@ Level_01::~Level_01()
 Level_02::Level_02(sf::RenderWindow & window, Hero *& hero) :
 	Level(window, hero)
 {
-	// Inicjalizacja koordynatów na mapie dla gracza
+	// Inicjalizacja koordynatï¿½w na mapie dla gracza
 	startX = 32.0f;
 	startY = 620.0f;
 
-	// Inicjalizacja t³a
-	backgroundT.loadFromFile("Grafiki/backg5.png");
+	// Inicjalizacja tï¿½a
+	backgroundT.loadFromFile(Resources::getBackground5Texture());
 	backgroundS.setTexture(backgroundT);
 
 	// Inicjalizacja nazwy poziomu i jego numeru
@@ -811,9 +804,9 @@ Level_02::Level_02(sf::RenderWindow & window, Hero *& hero) :
 	this->setLevelNumber(2);
 
 	// Ustawienie odpowiedniej poziomu z pliku
-	setLevel(this->window, "Levele/level_02.txt");
+	setLevel(this->window, "../resources/Levele/level_02.txt");
 
-	// Ustawienie informacji o poruszaj¹cych siê obiektach
+	// Ustawienie informacji o poruszajï¿½cych siï¿½ obiektach
 	for (std::vector<Enemy*>::iterator it = enemies.begin(); it != enemies.end(); ++it)
 	{
 		if (typeid(**it) == typeid(Zombie))

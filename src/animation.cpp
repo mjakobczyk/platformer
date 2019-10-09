@@ -4,14 +4,14 @@
 
 Animation::Animation()
 {
-	imageCount = sf::Vector2u(4, 4); // Przewa¿nie wszystkie animacjee bêd¹ tekstur¹ 4x4
-	switchTime = 0.2f; // Przyk³adowy switchtime, mo¿na daæ wolniejszy
-	totalTime = 0.0f; // Ca³kowity czas inicjalizujemy 0
-	currentImage.x = 0; // Na pocz¹tku chcemy pierwszy obrazek
+	imageCount = sf::Vector2u(4, 4); // Przewaï¿½nie wszystkie animacjee bï¿½dï¿½ teksturï¿½ 4x4
+	switchTime = 0.2f; // Przykï¿½adowy switchtime, moï¿½na daï¿½ wolniejszy
+	totalTime = 0.0f; // Caï¿½kowity czas inicjalizujemy 0
+	currentImage.x = 0; // Na poczï¿½tku chcemy pierwszy obrazek
 	forward = true;
 
 	sf::Texture texture;
-	texture.loadFromFile("Grafiki/warlock_of.png");
+	texture.loadFromFile(Resources::getWarlockTexture());
 
 	uvRect.width = texture.getSize().x / float(imageCount.x);
 	uvRect.height = texture.getSize().y / float(imageCount.y);
@@ -21,10 +21,10 @@ Animation::Animation()
 
 Animation::Animation(sf::Texture * texture_)
 {
-	imageCount = sf::Vector2u(4, 4); // Przewa¿nie wszystkie animacjee bêd¹ tekstur¹ 4x4
-	switchTime = 0.5f; // Przyk³adowy switchtime, mo¿na daæ wolniejszy
-	totalTime = 0.0f; // Ca³kowity czas inicjalizujemy 0
-	currentImage.x = 0; // Na pocz¹tku chcemy pierwszy obrazek
+	imageCount = sf::Vector2u(4, 4); // Przewaï¿½nie wszystkie animacjee bï¿½dï¿½ teksturï¿½ 4x4
+	switchTime = 0.5f; // Przykï¿½adowy switchtime, moï¿½na daï¿½ wolniejszy
+	totalTime = 0.0f; // Caï¿½kowity czas inicjalizujemy 0
+	currentImage.x = 0; // Na poczï¿½tku chcemy pierwszy obrazek
 	forward = true;
 
 	uvRect.width = (*texture_).getSize().x / float(imageCount.x);
@@ -42,7 +42,7 @@ Animation::Animation(sf::Vector2u imageCount_, float switchTime_)
 	forward = true;
 
 	sf::Texture texture;
-	texture.loadFromFile("Grafiki/warlock_of.png");
+	texture.loadFromFile(Resources::getWarlockTexture());
 
 	uvRect.width = texture.getSize().x / float(imageCount.x);
 	uvRect.height = texture.getSize().y / float(imageCount.y);
