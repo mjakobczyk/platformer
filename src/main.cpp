@@ -1,11 +1,11 @@
 #include "../include/basic.h"
 
+// Entry point of the application.
 int main()
 {
-	Game game;
-	game.run();
-	
-	std::cout << "Hello world!" << std::endl;
+	Game * const game = new Game();
+	game->run();
+	delete game;
 
 	return 0;
 }

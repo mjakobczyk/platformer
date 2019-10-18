@@ -1,10 +1,10 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-// Maszyna stanu gry
+// GameState represents possible states that application can be in.
 enum GameState { MENU = 0, GAME = 1, END = 2};
 
-// Klasa gry, singleton zarz�dzaj�cy dzia�aniem ca�ej gry
+// Game is a singleton that manages main application flow.
 class Game
 {
 protected:

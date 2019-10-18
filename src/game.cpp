@@ -22,7 +22,7 @@ Game::~Game()
 
 //---------------------------------------------------------------------------------------
 
-sf::RenderWindow & Game::getWindow()
+sf::RenderWindow &Game::getWindow()
 {
 	return window;
 }
@@ -43,105 +43,103 @@ void Game::setState(GameState state_)
 
 //---------------------------------------------------------------------------------------
 
-// G³ówna pêtla programu
+/**
+ * Run starts main loop of the application.
+ */
 void Game::run()
 {
-	Menu * menu_ptr = nullptr;
-	MainMenu mainMenu;
-	menu_ptr = &mainMenu;
+	Menu * const mainMenu = new MainMenu();
+	Menu * play = nullptr;
+	auto menuState = mainMenu;
 
-	// -------- GAMESTATE -----------
 	while (state != END)
 	{
 		switch (this->state)
 		{
-			case GameState::MENU:
+		case GameState::MENU:
+		{
+			while (menuState->getMenuState() != OUT)
 			{
-				// -------- MENUSTATE -----------
-				while (menu_ptr->getMenuState() != OUT)
+				switch (menuState->getMenuState())
 				{
-					switch (menu_ptr->getMenuState())
-					{
-					case MenuState::MAIN_MENU:
-					{
-						menu_ptr = &mainMenu;
-						menu_ptr->setMenuState(MenuState::MAIN_MENU);
-						menu_ptr->run(this->Game::getWindow());
-						break;
-					}
-					case MenuState::PLAY:
-					{
-						Play * play = new Play;
-						menu_ptr = play;
-						menu_ptr->setMenuState(MenuState::PLAY);
-						menu_ptr->run(this->Game::getWindow());
-						if (menu_ptr->isSpecSet())
-						{
-							this->state = GameState::GAME;
-							menu_ptr->setMenuState(MenuState::OUT);
-						}
-						break;
-					}
-					case MenuState::OPTIONS:
-					{
-						//Options * options = new Options;
-						//menu_ptr = &options;
-						//menu_ptr->setMenuState(OPTIONS);
-						break;
-					}
-					case MenuState::GAME_OVER:
-					{
-						EndGame * endgame = new EndGame(this->lastPoints, this->lastTime);
-						menu_ptr = endgame;
-						menu_ptr->run(this->Game::getWindow());
-						delete endgame;
-						menu_ptr->setMenuState(MenuState::MAIN_MENU);
-						break;
-					}
-					case MenuState::EXIT:
-					{
-						menu_ptr->setMenuState(MenuState::OUT);
-						this->state = GameState::END;
-						break;
-					}
-					default:
-						break;
-					}
+				case MenuState::MAIN_MENU:
+				{
+					menuState = mainMenu;
+					menuState->setMenuState(MenuState::MAIN_MENU);
+					menuState->run(this->Game::getWindow());
+					break;
 				}
-
-				 break;
+				case MenuState::PLAY:
+				{
+					play = new Play();
+					menuState = play;
+					menuState->setMenuState(MenuState::PLAY);
+					menuState->run(this->Game::getWindow());
+					if (menuState->isSpecSet())
+					{
+						this->state = GameState::GAME;
+						menuState->setMenuState(MenuState::OUT);
+					}
+					break;
+				}
+				case MenuState::OPTIONS:
+				{
+					break;
+				}
+				case MenuState::GAME_OVER:
+				{
+					EndGame * const endgame = new EndGame(this->lastPoints, this->lastTime);
+					menuState = endgame;
+					menuState->run(this->Game::getWindow());
+					delete endgame;
+					menuState->setMenuState(MenuState::MAIN_MENU);
+					break;
+				}
+				case MenuState::EXIT:
+				{
+					menuState->setMenuState(MenuState::OUT);
+					this->state = GameState::END;
+					break;
+				}
+				default:
+					break;
+				}
 			}
 
-			// -------- TRYB GRY -----------
-			case GameState::GAME: 
-			{
-				Engine * engine = new Engine(this->Game::getWindow(), menu_ptr->getChosenSpec());
-				engine->run(this->Game::getWindow());
-				this->updateScore(engine->getPoints(), engine->getTime());
-				this->state = GameState::MENU;
-				menu_ptr->setMenuState(MenuState::GAME_OVER);
-				delete engine;
+			break;
+		}
 
-				break;
-			}
+		case GameState::GAME:
+		{
+			Engine *engine = new Engine(this->Game::getWindow(), menuState->getChosenSpec());
+			engine->run(this->Game::getWindow());
+			this->updateScore(engine->getPoints(), engine->getTime());
+			this->state = GameState::MENU;
+			menuState->setMenuState(MenuState::GAME_OVER);
+			delete engine;
 
-			//  --------- TRYB WYJSCIA --------
-			case GameState::END: 
-			{
-				std::cout << "Koniec gry!" << std::endl;
-				return;
-				break;
-			}
+			break;
+		}
 
-			default:
-				break;
+		//  --------- TRYB WYJSCIA --------
+		case GameState::END:
+		{
+			this->setState(GameState::END);
+			break;
+		}
+
+		default:
+		{
+			this->setState(GameState::END);
+			break;
+		}
 		}
 	}
 }
 
 //---------------------------------------------------------------------------------------
 
-// Metoda kontroluj¹ca wystêpuj¹ce zdarzenia w grze
+// Metoda kontrolujï¿½ca wystï¿½pujï¿½ce zdarzenia w grze
 void Game::updateScore(int points_, float time_)
 {
 	this->lastPoints = points_;
