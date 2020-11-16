@@ -3,30 +3,31 @@
 
 #define WAIT_TIME 5
 
-// Klasa silnika gry, zarz�dza wyborem aktualnego poziomu
+// Engine manages running levels and counting score.
 class Engine
 {
-	int totalLevels; // Ca�kowita ilo�� poziom�w do przej�cia
-	int currentLevel; // Numer aktualnie granego poziomu
-	bool running; // Flaga okre�laj�ca czy trwa rozgrywka
-	Stats totalStats; // Statystyki zwracane po wyj��iu z gry
-
-	std::vector <Level*> levels; // Wektor granych poziom�w
-	sf::Clock delay; // Op�nienie generowane w celu uzyskania przerywnik�w mi�dzy poziomami
-	sf::RenderWindow & window; // Uchwyt do oryginalnego okna gry
-	Hero * hero; // Wska�ik na tworzon� posta� gracza
-
 public:
+	void run(sf::RenderWindow &);
+	bool play(sf::RenderWindow &, Level*);
+
+	void updateScore(int);
+	void updateTime(float);
+	int getPoints();
+	float getTime();
+
 	Engine(sf::RenderWindow & window, heroSpec);
 	~Engine();
 
-	void updateScore(int); // Aktualizuje wynik ko�cowy
-	void updateTime(float); // Aktualizuje czas, w kt�rym rozegrano gr�
-	int getPoints(); // Pobiera ilo�� uzyskanych punkt�w
-	float getTime(); // Pobiera czas, w jakim rozegrano gr�
+protected:
+	Hero * hero;
+	std::vector <Level*> levels;
+	sf::Clock delay;
+	sf::RenderWindow & window;
+	Stats totalStats;
 
-	void run(sf::RenderWindow &); // Powoduje aktywacj� silnika gry 
-	bool play(sf::RenderWindow &, Level*); // Pozwala rozegra� dany poziom
+	int totalLevels;
+	int currentLevel;
+	bool running; 
 };
 
 #endif

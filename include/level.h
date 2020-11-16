@@ -1,7 +1,8 @@
 #ifndef LEVEL_H_
 #define LEVEL_H_
 
-#define LEVELS_QUANTITY 1
+#define STARTING_LEVEL_NUMBER 1
+#define LEVELS_QUANTITY 2
 #define TILE_WIDTH 32
 #define TILE_HEIGHT 32
 
@@ -22,67 +23,67 @@ class Level
 	static float time;
 
 protected:
-	int width; // Szerokoœæ poziomu
-	int height; // Wysokoœæ poziomu
-	int visibleWidth; // Widoczna szerokoœæ poziomu
-	int visibleHeight; // Widoczna wysokoœæ poziomu
+	int width; // Szerokoï¿½ï¿½ poziomu
+	int height; // Wysokoï¿½ï¿½ poziomu
+	int visibleWidth; // Widoczna szerokoï¿½ï¿½ poziomu
+	int visibleHeight; // Widoczna wysokoï¿½ï¿½ poziomu
 	short levelNumber; // Numer poziomu
-	float startX; // Wspó³rzêdna X rozpoczêcia gry dla gracza
-	float startY; // Wspó³rzêdna Y rozpoczêcia gry dla gracza
-	float totalTime; // Ca³kowity czas rozgrywki
-	float switchTime; // Maksymalny czas zmiany pomiêdzy klatkami wyœwietlanych obiektów
-	float delta; // Ró¿nica w czasie pomiêdzy klatkami
-	bool isActive; // Flaga okreœlaj¹ca czy poziom jest grany
-	bool isCompleted; // Flaga okreœlaj¹ca czy poziom zosta³ zakoñczony
+	float startX; // Wspï¿½rzï¿½dna X rozpoczï¿½cia gry dla gracza
+	float startY; // Wspï¿½rzï¿½dna Y rozpoczï¿½cia gry dla gracza
+	float totalTime; // Caï¿½kowity czas rozgrywki
+	float switchTime; // Maksymalny czas zmiany pomiï¿½dzy klatkami wyï¿½wietlanych obiektï¿½w
+	float delta; // Rï¿½nica w czasie pomiï¿½dzy klatkami
+	bool isActive; // Flaga okreï¿½lajï¿½ca czy poziom jest grany
+	bool isCompleted; // Flaga okreï¿½lajï¿½ca czy poziom zostaï¿½ zakoï¿½czony
 
 	std::string levelName; // Nazwa poziomu
-	std::vector <sf::Texture*> textures; // Wektor 1d dostêpnych tekstur
-	std::vector <Stable*> stableObjects; // Wektor 1d obiektów sta³ych
-	std::vector <Moveable*> moveableObjects; // Wektor 1d obiektów poruszaj¹cych siê
-	std::vector <std::vector <sf::Sprite>> sprites; // Wektor 2d wyœwietlanych sprite'ów
+	std::vector <sf::Texture*> textures; // Wektor 1d dostï¿½pnych tekstur
+	std::vector <Stable*> stableObjects; // Wektor 1d obiektï¿½w staï¿½ych
+	std::vector <Moveable*> moveableObjects; // Wektor 1d obiektï¿½w poruszajï¿½cych siï¿½
+	std::vector <std::vector <sf::Sprite>> sprites; // Wektor 2d wyï¿½wietlanych sprite'ï¿½w
 	std::vector <std::vector <Tile>> tiles; // Wektor 2d kafli w postaci numerycznej
-	std::vector <Tile*> obstacles; // Wektor 1d przeszkód
-	std::vector <Enemy*> enemies; // Wektor 1d przeciwników
-	std::vector <Spell*> spells; // Wektor 1d czarów
+	std::vector <Tile*> obstacles; // Wektor 1d przeszkï¿½d
+	std::vector <Enemy*> enemies; // Wektor 1d przeciwnikï¿½w
+	std::vector <Spell*> spells; // Wektor 1d czarï¿½w
 
-	sf::View camera; // Kamera, która wyœwietla aktua
-	sf::Clock clock; // G³ówny zegar gry
-	sf::Texture backgroundT; // Tekstura t³a
-	sf::Sprite backgroundS; // Sprite t³a
+	sf::View camera; // Kamera, ktï¿½ra wyï¿½wietla aktua
+	sf::Clock clock; // Gï¿½ï¿½wny zegar gry
+	sf::Texture backgroundT; // Tekstura tï¿½a
+	sf::Sprite backgroundS; // Sprite tï¿½a
 
 	sf::RenderWindow & window; // Uchwyt do oryginalnego okna gry
 	Hero *& hero; // Uchwyt do oryginalnego gracza
-	Spell * spell; // WskaŸnik na aktualnie rzucany czar
-	Interface interface; // Wyœwietlany interfejs gry
+	Spell * spell; // Wskaï¿½nik na aktualnie rzucany czar
+	Interface interface; // Wyï¿½wietlany interfejs gry
 
 public:
 	Level(sf::RenderWindow &, Hero *&);
 	virtual ~Level();
 
-	void setLevelSize(unsigned int, unsigned int); // Ustawia wielkoœæ poziomu
+	void setLevelSize(unsigned int, unsigned int); // Ustawia wielkoï¿½ï¿½ poziomu
 	void setLevelNumber(unsigned short); // Ustawia numer poziomu
-	void setLevelName(const std::string &); // Ustawia nazwê poziomu
-	void setLevelBackGround(sf::Texture *); // Ustawia t³o poziomu
+	void setLevelName(const std::string &); // Ustawia nazwï¿½ poziomu
+	void setLevelBackGround(sf::Texture *); // Ustawia tï¿½o poziomu
 	void setLevel(sf::RenderWindow &, const std::string &); // Ustawia rodzaj poziomu
 
-	void resetPoints(); // Resetuje uzyskan¹ iloœæ punktów
-	void resetTime(); // Resetuje czas przebytych poziomów	
+	void resetPoints(); // Resetuje uzyskanï¿½ iloï¿½ï¿½ punktï¿½w
+	void resetTime(); // Resetuje czas przebytych poziomï¿½w	
 
 	sf::Time getCurrentTime(); // Pobiera aktualny czas gry
 	sf::Vector2i checkCollisions(Entity *, Direction); // Sprawdza kolizje w danym kierunku
-	int getPoints(); // Pobiera iloœæ punktów uzyskanych podczas gry
-	float getTime(); // Pobiera czas przebytych poziomów
+	int getPoints(); // Pobiera iloï¿½ï¿½ punktï¿½w uzyskanych podczas gry
+	float getTime(); // Pobiera czas przebytych poziomï¿½w
 	void awardPoint(int); // Nadaje punkt za uzyskanie bonusu
 
-	void updateLevel(float); // Odœwie¿a mapê poziomu
-	void checkCollisions(); // Sprawdza kolizje pomiêdzy obiektami
+	void updateLevel(float); // Odï¿½wieï¿½a mapï¿½ poziomu
+	void checkCollisions(); // Sprawdza kolizje pomiï¿½dzy obiektami
 	void update(); // Aktualizuje wszystkie elementy poziomu
 	void draw(); // Rysuje wszystkie elementy poziomu
 
-	virtual bool play(sf::RenderWindow &, Hero *&); // Pozwala zagraæ w poziom
+	virtual bool play(sf::RenderWindow &, Hero *&); // Pozwala zagraï¿½ w poziom
 
 private:
-	bool loadFromFile(const std::string &); // £aduje informacje o poziomie z pliku
+	bool loadFromFile(const std::string &); // ï¿½aduje informacje o poziomie z pliku
 };
 
 //---------------------------------------------------------------------------------------
