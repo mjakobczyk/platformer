@@ -4,20 +4,21 @@
 
 Game::Game()
 {
-	window.create(sf::VideoMode(WIDTH, HEIGHT), "THE_GAME", sf::Style::Close);
-	window.setVerticalSyncEnabled(true);
-	window.setFramerateLimit(FPS);
+	this->window.create(sf::VideoMode(WIDTH, HEIGHT), Game::GAME_NAME, sf::Style::Close);
+	this->window.setVerticalSyncEnabled(true);
+	this->window.setFramerateLimit(FPS);
 
-	state = GameState::MENU;
-	int lastPoints = 0;
-	float lastTime = 0;
+	this->state = GameState::MENU;
+	this->lastPoints = 0.f;
+	this->lastTime = 0.f;
 }
 
 //---------------------------------------------------------------------------------------
 
 Game::~Game()
 {
-	std::cout << "Gra konczy dzialanie. Dziekuje za zagranie!" << std::endl;
+	this->window.clear();
+	this->window.close();
 }
 
 //---------------------------------------------------------------------------------------
@@ -43,13 +44,10 @@ void Game::setState(GameState state_)
 
 //---------------------------------------------------------------------------------------
 
-/**
- * Run starts main loop of the application.
- */
 void Game::run()
 {
-	Menu * const mainMenu = new MainMenu();
-	Menu * play = nullptr;
+	Menu *const mainMenu = new MainMenu();
+	Menu *play = nullptr;
 	auto menuState = mainMenu;
 
 	while (state != END)
@@ -88,7 +86,7 @@ void Game::run()
 				}
 				case MenuState::GAME_OVER:
 				{
-					EndGame * const endgame = new EndGame(this->lastPoints, this->lastTime);
+					EndGame *const endgame = new EndGame(this->lastPoints, this->lastTime);
 					menuState = endgame;
 					menuState->run(this->Game::getWindow());
 					delete endgame;
@@ -102,13 +100,14 @@ void Game::run()
 					break;
 				}
 				default:
+				{
 					break;
+				}
 				}
 			}
 
 			break;
 		}
-
 		case GameState::GAME:
 		{
 			Engine *engine = new Engine(this->Game::getWindow(), menuState->getChosenSpec());
@@ -120,14 +119,11 @@ void Game::run()
 
 			break;
 		}
-
-		//  --------- TRYB WYJSCIA --------
 		case GameState::END:
 		{
 			this->setState(GameState::END);
 			break;
 		}
-
 		default:
 		{
 			this->setState(GameState::END);
@@ -139,7 +135,7 @@ void Game::run()
 
 //---------------------------------------------------------------------------------------
 
-// Metoda kontroluj�ca wyst�puj�ce zdarzenia w grze
+
 void Game::updateScore(int points_, float time_)
 {
 	this->lastPoints = points_;
