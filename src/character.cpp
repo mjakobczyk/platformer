@@ -6,7 +6,6 @@
 
 Character::Character() : Moveable(), name("unknown"), health(10), mana(10), animation()
 {
-	// Inicjalizacja zmiennych dotycz�cych ruchu
 	tempDelta = 0.0;
 	offset = 0.0f;
 	gravity = 5.0f;
@@ -16,7 +15,6 @@ Character::Character() : Moveable(), name("unknown"), health(10), mana(10), anim
 	movement = sf::Vector2f(0.0f, 0.0f);
 	coords = sf::Vector2i(0, 0);
 
-	// Ustawienie flag dotycz�cych ruchu
 	faceRight = true;
 	isJumping = false;
 	isFalling = false;
@@ -27,10 +25,11 @@ Character::Character() : Moveable(), name("unknown"), health(10), mana(10), anim
 	isColliding = false;
 	lastDirection = UNKNOWN;
 
-	// Ustawienie rz�du aniamcji, tekstury i sprite'a
 	row = 1;
 	if (!(*texture).loadFromFile(Resources::getWarlockTexture()))
-		std::cout << "Blad wczytywania tekstury!" << std::endl;
+	{
+		std::cerr << "Texture: " << Resources::getWarlockTexture() << "could not be loaded" << std::endl;
+	}
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
 	sprite.setPosition(50.0f, 50.0f);
@@ -42,7 +41,6 @@ Character::Character() : Moveable(), name("unknown"), health(10), mana(10), anim
 
 Character::Character(sf::Texture *texture_) : Moveable(), name("unknown"), health(10), mana(10), animation(texture_)
 {
-	// Inicjalizacja zmiennych dotycz�cych ruchu
 	tempDelta = 0.0;
 	offset = 0.0f;
 	gravity = 5.0f;
@@ -52,7 +50,6 @@ Character::Character(sf::Texture *texture_) : Moveable(), name("unknown"), healt
 	movement = sf::Vector2f(0.0f, 0.0f);
 	coords = sf::Vector2i(0, 0);
 
-	// Ustawienie flag dotycz�cych ruchu
 	faceRight = false;
 	isJumping = false;
 	isFalling = false;
@@ -63,7 +60,6 @@ Character::Character(sf::Texture *texture_) : Moveable(), name("unknown"), healt
 	isColliding = false;
 	lastDirection = UNKNOWN;
 
-	// Ustawienie rz�du aniamcji, tekstury i sprite'a
 	row = 1;
 	texture = texture_;
 	sprite.setTexture(*texture);
@@ -77,7 +73,6 @@ Character::Character(sf::Texture *texture_) : Moveable(), name("unknown"), healt
 
 Character::Character(sf::Vector2u imageCount_, float switchTime_) : Moveable(), name("unknown"), health(10), mana(10), animation(imageCount_, switchTime_)
 {
-	// Inicjalizacja zmiennych dotycz�cych ruchu
 	tempDelta = 0.0;
 	offset = 0.0f;
 	gravity = 5.0f;
@@ -87,7 +82,6 @@ Character::Character(sf::Vector2u imageCount_, float switchTime_) : Moveable(), 
 	movement = sf::Vector2f(0.0f, 0.0f);
 	coords = sf::Vector2i(0, 0);
 
-	// Ustawienie flag dotycz�cych ruchu
 	faceRight = false;
 	isJumping = false;
 	isFalling = false;
@@ -98,10 +92,11 @@ Character::Character(sf::Vector2u imageCount_, float switchTime_) : Moveable(), 
 	isColliding = false;
 	lastDirection = UNKNOWN;
 
-	// Ustawienie rz�du aniamcji, tekstury i sprite'a
 	row = 1;
 	if (!(*texture).loadFromFile(Resources::getWarlockTexture()))
-		std::cout << "Blad wczytywania tekstury!" << std::endl;
+	{
+		std::cerr << "Texture: " << Resources::getWarlockTexture() << "could not be loaded" << std::endl;
+	}
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
 	sprite.setPosition(50.0f, 50.0f);
@@ -113,7 +108,6 @@ Character::Character(sf::Vector2u imageCount_, float switchTime_) : Moveable(), 
 
 Character::Character(sf::Texture *texture_, sf::Vector2u imageCount_, float switchTime_) : Moveable(), name("unknown"), health(10), mana(10), animation(texture_, imageCount_, switchTime_)
 {
-	// Inicjalizacja zmiennych dotycz�cych ruchu
 	tempDelta = 0.0;
 	offset = 0.0f;
 	gravity = 5.0f;
@@ -123,7 +117,6 @@ Character::Character(sf::Texture *texture_, sf::Vector2u imageCount_, float swit
 	movement = sf::Vector2f(0.0f, 0.0f);
 	coords = sf::Vector2i(0, 0);
 
-	// Ustawienie flag dotycz�cych ruchu
 	faceRight = false;
 	isJumping = false;
 	isFalling = false;
@@ -134,10 +127,11 @@ Character::Character(sf::Texture *texture_, sf::Vector2u imageCount_, float swit
 	isColliding = false;
 	lastDirection = UNKNOWN;
 
-	// Ustawienie rz�du aniamcji, tekstury i sprite'a
 	row = 1;
 	if (!(*texture).loadFromFile(Resources::getWarlockTexture()))
-		std::cout << "Blad wczytywania tekstury!" << std::endl;
+	{
+		std::cerr << "Texture: " << Resources::getWarlockTexture() << "could not be loaded" << std::endl;
+	}
 	sprite.setTexture(*texture);
 	sprite.setScale(1.0f, 1.0f);
 	sprite.setPosition(50.0f, 50.0f);
@@ -193,14 +187,13 @@ void Character::setY(float y_)
 
 //---------------------------------------------------------------------------------------
 
-// Metoda ustawiaj�ca imi� postaci
 void Character::setName(const std::string &name_)
 {
 	this->name = name_;
 }
+
 //---------------------------------------------------------------------------------------
 
-// Metoda ustawiaj�ca �ycie postaci
 void Character::setHealth(int health_)
 {
 	this->health = health_;
@@ -208,7 +201,6 @@ void Character::setHealth(int health_)
 
 //---------------------------------------------------------------------------------------
 
-// Metoda ustawiaj�ca ilo�� many postaci
 void Character::setMana(int mana_)
 {
 	this->mana = mana_;
@@ -216,13 +208,10 @@ void Character::setMana(int mana_)
 
 //---------------------------------------------------------------------------------------
 
-// True - porusza si� w prawo, false - porusza si� w lewo
+
 void Character::setDirection(bool goRight)
 {
-	if (!goRight)
-		this->faceRight = false;
-	else
-		this->faceRight = true;
+	this->faceRight = goRight;
 }
 
 //---------------------------------------------------------------------------------------
@@ -234,27 +223,16 @@ void Character::setCollisionState(bool collision)
 
 //---------------------------------------------------------------------------------------
 
-// Metoda sprawdzaj�ca czy posta� porusza si� w prawo
 bool Character::isFacingRight()
 {
-	if (!(this->faceRight))
-		return false;
-	else
-		return true;
+	return this->faceRight;
 }
 
 //---------------------------------------------------------------------------------------
 
 bool Character::isSpellPending()
 {
-	if (pendingSpell)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return this->pendingSpell;
 }
 
 //---------------------------------------------------------------------------------------
@@ -290,12 +268,11 @@ void Character::hurt(float delta)
 
 //---------------------------------------------------------------------------------------
 
-// Metoda aktualizuj�ca pozycj� gracza
 void Character::update(float diff)
 {
 	movement = sf::Vector2f(0.0f, 0.0f);
 
-	// Gdy posta� chce si� przesun�� w lewo
+	// Moving left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		if (canMoveLeft)
@@ -307,7 +284,7 @@ void Character::update(float diff)
 		}
 	}
 
-	// Gdy posta� chce si� przesun�� w prawo
+	// Moving right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		if (canMoveRight)
@@ -319,7 +296,7 @@ void Character::update(float diff)
 		}
 	}
 
-	// Gdy posta� chce skoczy�
+	// Jump
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		if (canJump)
@@ -334,7 +311,6 @@ void Character::update(float diff)
 		}
 	}
 
-	// Je�eli posta� skacze
 	if (isJumping == true)
 	{
 		offset -= gravity;
@@ -349,14 +325,12 @@ void Character::update(float diff)
 		lastDirection = UP;
 	}
 
-	// Je�eli posta� spada
 	if (isFalling == true)
 	{
 		offset += gravity;
 		movement.y += offset * diff;
 		lastDirection = DOWN;
 
-		// Dop�ki posta� nie dotyka poziomu pod�o�a
 		if (this->getSprite().getPosition().y > groundHeight) // + this->getSprite().getGlobalBounds().height
 		{
 			isJumping = false;
@@ -367,7 +341,6 @@ void Character::update(float diff)
 		}
 	}
 
-	// Zdejmij debuffy z postaci
 	if (debuffActive == true)
 	{
 		if (clock.getElapsedTime().asSeconds() > tempDelta)
@@ -379,27 +352,22 @@ void Character::update(float diff)
 		}
 	}
 
-	// Je�eli posta� nie porusza si�
 	if (movement.x == 0.0f && movement.y == 0.0f)
 	{
 		return;
 	}
-	// Je�eli zosta� dokonany jaki� ruch
 	else
 	{
 		animation.update(row, diff, faceRight);
 		sprite.setTextureRect(animation.getIntRect());
 		sprite.move(movement);
-		// std::cout << "Player moved " << movement.x << "," << movement.y << std::endl;
 		lastMovement = movement;
-		// std::cout << "Move: " << movement.x << std::endl;
 		return;
 	}
 }
 
 //---------------------------------------------------------------------------------------
 
-// Metoda rysuj�ca posta�
 void Character::draw(sf::RenderWindow &window_)
 {
 	window_.draw(sprite);
@@ -413,7 +381,7 @@ bool Character::collision(Entity *entity)
 	{
 		switch (entity->getID())
 		{
-		case TileType::STONE_1: // Stone
+		case TileType::STONE_1:
 		case TileType::BRICK_1:
 		case TileType::BRICK_2:
 		{

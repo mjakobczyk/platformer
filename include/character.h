@@ -6,63 +6,59 @@ enum Direction { UNKNOWN = 0, LEFT = 1, RIGHT = 2, UP = 3, DOWN = 4 };
 #define MIN_HEALTH 1
 #define MAX_HEALTH 10
 
-// Klasa postaci
+// Character is a movable object that can perform actions.
 class Character : public Moveable
 {
-protected:
-	// Zmienne okre�laj�ce imi� i atrybuty postaci
-	std::string name;
-	int health, mana;
+public:
+	virtual void draw(sf::RenderWindow &);
+	virtual bool collision(Entity *);
+	virtual void update(float);
 	
-	sf::Vector2f movement; // Okre�la pr�dko�� postaci w uk�adzie kartezja�skim
-	sf::Vector2f lastMovement; // Zapisuje warto�� ostatnio poczynionego ruchu
-	Animation animation; // Animacja postaci
-	Direction lastDirection; // Zapisuje w kt�rym kierunku nast�pi� ostatni ruch
-	unsigned int row; // Okre�la �adowany rz�d w teksturze animacji
-	float tempDelta; // Czas efektu oddzia�uj�cego na posta�
-	float moveSpeed; // Okre�la pr�dko�� ruchu postaci
-	float jumpSpeed; // Okre�la pr�dko�� skoku postaci
-	float gravity; // Grawitacja wsp�pracuje ze skokami postaci
-	float offset; // Okre�la jak daleki skok wykonany
-	float groundHeight; // Okre�la poziom gruntu mapy, jednakowy wsz�dzie
-	// Okre�laj� czy posta� jest zwr�cona w danym kierunku, czy skacze, czy spada
-	// i czy z czym� aktualnie koliduje
-	bool faceRight, isJumping, isFalling, isColliding; 
-	bool debuffActive; // Okre�la czy na gracza jest na�o�ony jaki� efekt
-	bool pendingSpell; // Okre�la czy gracz mo�e rzuca� zakl�cie
+	int getHealth();
+	Direction getLastDirection();
+	sf::Vector2f getLastMovement();
+	bool isFacingRight();
+	bool isSpellPending();
+	void move(sf::Vector2f);
+	void slow(float);
+	void hurt(float);
 
-public:
-	// Zmienne okre�laj�ce czy posta� mo�e porusza� si� w danym kierunku
-	bool canMoveRight, canMoveLeft, canJump, canFall;
+	void setX(float);
+	void setY(float);
+	void setName(const std::string &); 
+	void setHealth(int);
+	void setMana(int);
+	void setDirection(bool);
+	void setCollisionState(bool);
 
-public:
 	Character();
 	Character(sf::Texture*);
 	Character(sf::Vector2u, float);
 	Character(sf::Texture*, sf::Vector2u, float);
-	virtual  ~Character();
+	virtual ~Character();
 
-	int getHealth(); // Zwraca aktualn� ilo�� zdrowia postaci
-	Direction getLastDirection(); // Pobiera ostatni obrany kierunek
-	sf::Vector2f getLastMovement();; // Pobiera ostatni ruch
-	
-	void setX(float); // Ustawia wsp�rz�dn� X pozycji postaci
-	void setY(float); // Ustawia wsp�rz�dn� Y pozycji postaci
-	void setName(const std::string &); // Ustawia imie postaci
-	void setHealth(int); // Ustawia zdrowie postaci
-	void setMana(int); // Ustawia mane postaci
-	void setDirection(bool); // Ustawia kierunek zwrotu postaci
-	void setCollisionState(bool); // Ustawia czy gracz na co� napotka�
+	bool canMoveRight, canMoveLeft, canJump, canFall;
 
-	bool isFacingRight(); // Sprawdza, czy posta� porusza si� w prawo
-	bool isSpellPending(); // Sprawdza, czy wyra�ono ch�� u�ycia czaru
-	void move(sf::Vector2f); // Zmienia pozycj� postaci o zadan� warto��
-	void slow(float); // Spowalnia bohatera na dany czas
-	void hurt(float); // Zadaje graczowi obra�enia
+protected:
+	std::string name;
+	int health, mana;
 	
-	virtual void draw(sf::RenderWindow &);
-	virtual bool collision(Entity *);
-	virtual void update(float);
+	sf::Vector2f movement;
+	sf::Vector2f lastMovement;
+
+	Animation animation;
+	Direction lastDirection;
+
+	unsigned int row;
+	float tempDelta;
+	float moveSpeed;
+	float jumpSpeed;
+	float gravity;
+	float offset; 
+	float groundHeight;
+	bool faceRight, isJumping, isFalling, isColliding; 
+	bool debuffActive; 
+	bool pendingSpell;
 };
 
 #endif
