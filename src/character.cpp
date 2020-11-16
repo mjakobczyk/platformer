@@ -4,8 +4,7 @@
 
 //---------------------------------------------------------------------------------------
 
-Character::Character() :
-	Moveable(), animation(), name("unknown"), health(10), mana(10)
+Character::Character() : Moveable(), name("unknown"), health(10), mana(10), animation()
 {
 	// Inicjalizacja zmiennych dotycz�cych ruchu
 	tempDelta = 0.0;
@@ -41,8 +40,7 @@ Character::Character() :
 
 //---------------------------------------------------------------------------------------
 
-Character::Character(sf::Texture * texture_) :
-	Moveable(), animation(texture_), name("unknown"), health(10), mana(10)
+Character::Character(sf::Texture *texture_) : Moveable(), name("unknown"), health(10), mana(10), animation(texture_)
 {
 	// Inicjalizacja zmiennych dotycz�cych ruchu
 	tempDelta = 0.0;
@@ -77,8 +75,7 @@ Character::Character(sf::Texture * texture_) :
 
 //---------------------------------------------------------------------------------------
 
-Character::Character(sf::Vector2u imageCount_, float switchTime_) :
-	Moveable(), animation(imageCount_, switchTime_), name("unknown"), health(10), mana(10)
+Character::Character(sf::Vector2u imageCount_, float switchTime_) : Moveable(), name("unknown"), health(10), mana(10), animation(imageCount_, switchTime_)
 {
 	// Inicjalizacja zmiennych dotycz�cych ruchu
 	tempDelta = 0.0;
@@ -114,8 +111,7 @@ Character::Character(sf::Vector2u imageCount_, float switchTime_) :
 
 //---------------------------------------------------------------------------------------
 
-Character::Character(sf::Texture * texture_, sf::Vector2u imageCount_, float switchTime_) :
-	Moveable(), animation(texture_, imageCount_, switchTime_), name("unknown"), health(10), mana(10)
+Character::Character(sf::Texture *texture_, sf::Vector2u imageCount_, float switchTime_) : Moveable(), name("unknown"), health(10), mana(10), animation(texture_, imageCount_, switchTime_)
 {
 	// Inicjalizacja zmiennych dotycz�cych ruchu
 	tempDelta = 0.0;
@@ -151,7 +147,7 @@ Character::Character(sf::Texture * texture_, sf::Vector2u imageCount_, float swi
 
 //---------------------------------------------------------------------------------------
 
-Character::~Character() 
+Character::~Character()
 {
 	if (this->texture != nullptr)
 	{
@@ -163,22 +159,22 @@ Character::~Character()
 //---------------------------------------------------------------------------------------
 
 int Character::getHealth()
-{ 
+{
 	return this->health;
 }
 
 //---------------------------------------------------------------------------------------
 
-Direction Character::getLastDirection() 
-{ 
+Direction Character::getLastDirection()
+{
 	return this->lastDirection;
 }
 
 //---------------------------------------------------------------------------------------
 
-sf::Vector2f Character::getLastMovement() 
-{ 
-	return this->lastMovement; 
+sf::Vector2f Character::getLastMovement()
+{
+	return this->lastMovement;
 }
 
 //---------------------------------------------------------------------------------------
@@ -198,7 +194,7 @@ void Character::setY(float y_)
 //---------------------------------------------------------------------------------------
 
 // Metoda ustawiaj�ca imi� postaci
-void Character::setName(const std::string & name_)
+void Character::setName(const std::string &name_)
 {
 	this->name = name_;
 }
@@ -325,7 +321,7 @@ void Character::update(float diff)
 
 	// Gdy posta� chce skoczy�
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{	
+	{
 		if (canJump)
 		{
 			if (isJumping == false && isFalling == false)
@@ -342,7 +338,7 @@ void Character::update(float diff)
 	if (isJumping == true)
 	{
 		offset -= gravity;
-		movement.y -= offset*diff;
+		movement.y -= offset * diff;
 		// Je�eli posta� osi�gnie maksymaln� d�ugo�� skoku
 		if (offset <= 0)
 		{
@@ -357,7 +353,7 @@ void Character::update(float diff)
 	if (isFalling == true)
 	{
 		offset += gravity;
-		movement.y += offset*diff;
+		movement.y += offset * diff;
 		lastDirection = DOWN;
 
 		// Dop�ki posta� nie dotyka poziomu pod�o�a
@@ -404,35 +400,26 @@ void Character::update(float diff)
 //---------------------------------------------------------------------------------------
 
 // Metoda rysuj�ca posta�
-void Character::draw(sf::RenderWindow & window_)
+void Character::draw(sf::RenderWindow &window_)
 {
 	window_.draw(sprite);
 }
 
 //---------------------------------------------------------------------------------------
 
-bool Character::collision(Entity * entity)
+bool Character::collision(Entity *entity)
 {
-	// Je�eli nadesz�a kolizja z kafelkiem
 	if (typeid(*entity) == typeid(Tile))
 	{
-		// Pobierane jest ID kafelka w celu jego jednoznacznego zidentyfikowania
 		switch (entity->getID())
 		{
-
-		// Je�eli tym kafelkiem by� STONE_1
-		case 1:
+		case TileType::STONE_1: // Stone
+		case TileType::BRICK_1:
+		case TileType::BRICK_2:
 		{
-			std::cout << "Collision with: Stone detected!" << std::endl;
-		}
-
-		// Je�eli tym kafelkiem by� BRICK_1
-		case 3:
-		{
-			std::cout << "Collision with: Brick deteced!" << std::endl;
 			isColliding = true;
 
-			// Kolizja z prawej strony
+			// Collision from right
 			if (this->getLastMovement().x > 0)
 			{
 				this->move(sf::Vector2f(-std::abs(this->getLastMovement().x), 0));
@@ -443,7 +430,7 @@ bool Character::collision(Entity * entity)
 				}
 			}
 
-			// Kolizja z lewej strony
+			// Collision from left
 			else if (this->getLastMovement().x < 0)
 			{
 				this->move(sf::Vector2f(std::abs(this->getLastMovement().x), 0));
@@ -454,7 +441,7 @@ bool Character::collision(Entity * entity)
 				}
 			}
 
-			// Kolizja z do�u
+			// Collision from down
 			if (this->getLastMovement().y < 0)
 			{
 				this->isJumping = false;
@@ -462,7 +449,7 @@ bool Character::collision(Entity * entity)
 				this->move(sf::Vector2f(0, std::abs(this->getLastMovement().y)));
 			}
 
-			// Kolizja z g�ry
+			// Kolizja from up
 			else if (this->getLastMovement().y > 0)
 			{
 				this->isJumping = false;
@@ -474,43 +461,29 @@ bool Character::collision(Entity * entity)
 			break;
 		}
 
-		// Je�eli tym kafalkiem by� LAVA_1
-		case 5:
+		case TileType::LAVA_1:
+		case TileType::LAVA_2:
 		{
-			// std::cout << "Collision with: Lava detected!" << std::endl;
 			this->hurt(3);
 		}
-
-		// Je�eli tym kafelkiem by� WATER_1
-		case 7:
+		case TileType::WATER_1:
 		{
-			// std::cout << "Collision with: Water detected!" << std::endl;
 			this->slow(1);
 		}
 		default:
+		{
 			break;
 		}
-
+		}
 	}
-
-	// Je�eli nadesz�a kolizja z monet�
-	else if (typeid(*entity) == typeid(Coin)) // else if (typeid(entity) == typeid(Coin))
+	else if (typeid(*entity) == typeid(Coin))
 	{
-		//std::cout << "Collision with: Coin detected!" << std::endl;
+		// TODO: add points when interacting with coin
 	}
-
-	// Je�eli nadesz�a kolizja z przeciwnikiem
-	else if (typeid(*entity) == typeid(Enemy)) // else if (typeid(entity) == typeid(Coin))
+	else if (typeid(*entity) == typeid(Enemy))
 	{
-		//std::cout << "Collision with: Enemy detected!" << std::endl;
 		this->hurt(3);
 	}
-
-	//Je�eli na li�cie nie zosta� uwzgl�dniony obiekt
-	else
-		//std::cout << "Unknown object!" << std::endl;
-
-	//isColliding = false;
 
 	return true;
 }
