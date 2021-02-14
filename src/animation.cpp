@@ -4,73 +4,76 @@
 
 Animation::Animation()
 {
-	imageCount = sf::Vector2u(4, 4); // Przewa�nie wszystkie animacjee b�d� tekstur� 4x4
-	switchTime = 0.2f; // Przyk�adowy switchtime, mo�na da� wolniejszy
-	totalTime = 0.0f; // Ca�kowity czas inicjalizujemy 0
-	currentImage.x = 0; // Na pocz�tku chcemy pierwszy obrazek
-	forward = true;
+	this->imageCount = sf::Vector2u(4, 4);
+	this->switchTime = 0.2f;
+	this->totalTime = 0.0f;
+	this->currentImage.x = 0;
+	this->forward = true;
 
 	sf::Texture texture;
 	texture.loadFromFile(Resources::getWarlockTexture());
 
-	uvRect.width = texture.getSize().x / float(imageCount.x);
-	uvRect.height = texture.getSize().y / float(imageCount.y);
+	this->uvRect.width = texture.getSize().x / float(imageCount.x);
+	this->uvRect.height = texture.getSize().y / float(imageCount.y);
 }
 
 //---------------------------------------------------------------------------------------
 
 Animation::Animation(sf::Texture * texture_)
 {
-	imageCount = sf::Vector2u(4, 4); // Przewa�nie wszystkie animacjee b�d� tekstur� 4x4
-	switchTime = 0.5f; // Przyk�adowy switchtime, mo�na da� wolniejszy
-	totalTime = 0.0f; // Ca�kowity czas inicjalizujemy 0
-	currentImage.x = 0; // Na pocz�tku chcemy pierwszy obrazek
-	forward = true;
+	this->imageCount = sf::Vector2u(4, 4);
+	this->switchTime = 0.5f;
+	this->totalTime = 0.0f;
+	this->currentImage.x = 0;
+	this->forward = true;
 
-	uvRect.width = (*texture_).getSize().x / float(imageCount.x);
-	uvRect.height = (*texture_).getSize().y / float(imageCount.y);
+	this->uvRect.width = (*texture_).getSize().x / float(imageCount.x);
+	this->uvRect.height = (*texture_).getSize().y / float(imageCount.y);
 }
 
 //---------------------------------------------------------------------------------------
 
 Animation::Animation(sf::Vector2u imageCount_, float switchTime_)
 {
-	imageCount = imageCount_;
-	switchTime = switchTime_;
-	totalTime = 0.0f;
-	currentImage.x = 0;
-	forward = true;
+	this->imageCount = imageCount_;
+	this->switchTime = switchTime_;
+	this->totalTime = 0.0f;
+	this->currentImage.x = 0;
+	this->forward = true;
 
 	sf::Texture texture;
 	texture.loadFromFile(Resources::getWarlockTexture());
 
-	uvRect.width = texture.getSize().x / float(imageCount.x);
-	uvRect.height = texture.getSize().y / float(imageCount.y);
+	this->uvRect.width = texture.getSize().x / float(imageCount.x);
+	this->uvRect.height = texture.getSize().y / float(imageCount.y);
 }
 
 //---------------------------------------------------------------------------------------
 
 Animation::Animation(sf::Texture * texture_, sf::Vector2u imageCount_, float switchTime_)
 {
-	imageCount = imageCount_;
-	switchTime = switchTime_;
-	totalTime = 0.0f;
-	currentImage.x = 0;
-	forward = true;
+	this->imageCount = imageCount_;
+	this->switchTime = switchTime_;
+	this->totalTime = 0.0f;
+	this->currentImage.x = 0;
+	this->forward = true;
 
-	uvRect.width = texture_->getSize().x / float(imageCount.x);
-	uvRect.height = texture_->getSize().y / float(imageCount.y);
+	this->uvRect.width = texture_->getSize().x / float(imageCount.x);
+	this->uvRect.height = texture_->getSize().y / float(imageCount.y);
 }
 
 //---------------------------------------------------------------------------------------
 
-Animation::~Animation() 
+Animation::~Animation() {}
+
+//---------------------------------------------------------------------------------------
+
+sf::IntRect Animation::getIntRect()
 {
-	;
+	return this->uvRect;
 }
 
 //---------------------------------------------------------------------------------------
-
 
 void Animation::setSwitchTime(float switchTime_)
 {
