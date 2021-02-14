@@ -17,6 +17,7 @@ set (SOURCE_FILES
 	src/animation.cpp
 	src/button.cpp
 	src/character.cpp
+	src/constants.cpp
 	src/enemy.cpp
 	src/engine.cpp
 	src/entity.cpp
@@ -39,6 +40,7 @@ set (HEADER_FILES
 	include/button.h
 	include/basic.h
 	include/character.h
+	include/constants.h
 	include/enemy.h
 	include/engine.h
 	include/entity.h

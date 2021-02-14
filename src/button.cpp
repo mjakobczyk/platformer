@@ -1,30 +1,36 @@
-#include "../include/basic.h"
+#include <SFML/Graphics.hpp>
+#include "../include/button.h"
+#include "../include/constants.h"
 
 //---------------------------------------------------------------------------------------
 
 Button::Button()
 {
-	text.setCharacterSize(65);
-	text.setFillColor(sf::Color::Red);
-	text.setString("DEFAULT");
-	text.setPosition(sf::Vector2f((WIDTH / 2 - text.getGlobalBounds().width), HEIGHT / 2));
+	this->text.setCharacterSize(65);
+	this->text.setFillColor(sf::Color::Red);
+	this->text.setString("DEFAULT");
+	this->text.setPosition(sf::Vector2f((Constants::width() / 2 - this->text.getGlobalBounds().width), Constants::height() / 2));
 }
 
 //---------------------------------------------------------------------------------------
 
 Button::Button(int charSize, const std::string & buttonName)
 {
-	text.setCharacterSize(charSize);
-	text.setFillColor(sf::Color::Red);
-	text.setString(buttonName);
-	text.setPosition(sf::Vector2f((WIDTH / 2 - text.getGlobalBounds().width), HEIGHT / 2));
+	this->text.setCharacterSize(charSize);
+	this->text.setFillColor(sf::Color::Red);
+	this->text.setString(buttonName);
+	this->text.setPosition(sf::Vector2f((Constants::width() / 2 - this->text.getGlobalBounds().width), Constants::height() / 2));
 }
 
 //---------------------------------------------------------------------------------------
 
-Button::~Button()
+Button::~Button() {}
+
+//---------------------------------------------------------------------------------------
+
+sf::Text Button::getText()
 {
-	;
+	return this->text;
 }
 
 //---------------------------------------------------------------------------------------
@@ -64,18 +70,9 @@ void Button::setSize(const int size)
 
 //---------------------------------------------------------------------------------------
 
-void Button::handleEvents(sf::Vector2f & mouse)
-{
-	if (this->text.getGlobalBounds().contains(mouse))
-		this->text.setFillColor(sf::Color::Cyan);
-	else
-		this->text.setFillColor(sf::Color::White);
-}
-
-//---------------------------------------------------------------------------------------
-
 void Button::draw(sf::RenderWindow & whichWindow)
 {
 	whichWindow.draw(this->text);
 }
+
 //---------------------------------------------------------------------------------------
